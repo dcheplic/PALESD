@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="325.0" prefWidth="510.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.palesd.gui.meeting.TakeAttendanceStartController">
+  <children>
+    <ListView layoutX="21.0" layoutY="51.0" prefHeight="200.0" prefWidth="469.0" />
+    <Label layoutX="21.0" layoutY="16.0" text="Choose a Club:">
+      <font>
+        <Font size="24.0" />
+      </font>
+    </Label>
+    <Button fx:id="exitButton" layoutX="21.0" layoutY="270.0" mnemonicParsing="false" onMouseClicked="#handleExitButtonAction" text="Exit">
+      <font>
+        <Font size="20.0" fx:id="x1" />
+      </font>
+    </Button>
+    <Button fx:id="beginButton" font="$x1" layoutX="406.0" layoutY="270.0" mnemonicParsing="false" onMouseClicked="#handleBeginButtonAction" text="Begin" />
+  </children>
+</AnchorPane>

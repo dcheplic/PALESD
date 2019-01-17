@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.palesd.gui.main.AttendanceModeController">
+  <children>
+    <Button fx:id="startAttendanceEventButton" layoutX="56.0" layoutY="137.0" mnemonicParsing="false" onMouseClicked="#handleStartAttendanceEventButtonAction" onMousePressed="#handleStartAttendanceEventButtonHold" onMouseReleased="#handleHoldRelease" text="Start New Event">
+      <font>
+        <Font size="30.0" fx:id="x1" />
+      </font>
+    </Button>
+    <Button fx:id="viewPastAttendanceEventButton" font="$x1" layoutX="56.0" layoutY="222.0" mnemonicParsing="false" onMouseClicked="#handleViewPastAttendanceEventButtonAction" onMousePressed="#handleViewPastAttendanceEventButtonHold" onMouseReleased="#handleHoldRelease" text="View Lists" />
+    <Button fx:id="deletePastAttendanceEventButton" font="$x1" layoutX="56.0" layoutY="307.0" mnemonicParsing="false" onMouseClicked="#handleDeletePastAttendanceEventButtonAction" onMousePressed="#handleDeletePastAttendanceEventButtonHold" onMouseReleased="#handleHoldRelease" text="Delete Lists" />
+    <Button fx:id="returnToMainMenuButton" layoutX="522.0" layoutY="400.0" mnemonicParsing="false" onMouseClicked="#handleReturnToMainMenuButtonAction" onMousePressed="#handleReturnToMainMenuButtonHold" onMouseReleased="#handleHoldRelease" text="Return to Main Menu">
+      <font>
+        <Font size="20.0" />
+      </font>
+    </Button>
+    <TextArea fx:id="buttonDescriptionTextArea" editable="false" layoutX="400.0" layoutY="116.0" prefHeight="265.0" prefWidth="346.0" promptText="Press and hold on a button to see a description here." wrapText="true" />
+    <Label layoutX="186.0" layoutY="23.0" text="Attendance Mode">
+      <font>
+        <Font size="50.0" />
+      </font>
+    </Label>
+  </children>
+</AnchorPane>

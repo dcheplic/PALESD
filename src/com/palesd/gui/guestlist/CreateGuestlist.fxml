@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.palesd.gui.guestlist.CreateGuestlistController">
+  <children>
+    <ListView fx:id="guestList" layoutX="425.0" layoutY="50.0" onMouseClicked="#handleSelectedEventAction" prefHeight="358.0" prefWidth="350.0" />
+    <Label layoutX="425.0" layoutY="10.0" text="Guests">
+      <font>
+        <Font size="24.0" fx:id="x1" />
+      </font>
+    </Label>
+    <Button fx:id="deleteGuestButton" layoutX="625.0" layoutY="426.0" mnemonicParsing="false" onMouseClicked="#handleDeleteButtonAction" text="Delete Guest">
+      <font>
+        <Font size="20.0" fx:id="x2" />
+      </font>
+    </Button>
+    <Label font="$x1" layoutX="14.0" layoutY="10.0" text="Name" />
+    <TextField fx:id="nameField" layoutX="14.0" layoutY="50.0" onAction="#onEnter" prefHeight="42.0" prefWidth="350.0" promptText="Macho Man Randy Savage" />
+    <Button fx:id="exitButton" font="$x2" layoutX="14.0" layoutY="426.0" mnemonicParsing="false" onMouseClicked="#handleExitButtonAction" text="Exit" />
+    <Button fx:id="addGuestButton" font="$x2" layoutX="14.0" layoutY="105.0" mnemonicParsing="false" onMouseClicked="#handleAddGuestButtonAction" text="Add Guest" />
+  </children>
+</AnchorPane>

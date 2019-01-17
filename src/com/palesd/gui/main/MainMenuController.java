@@ -1,0 +1,125 @@
+package com.palesd.gui.main;
+
+import com.palesd.database.Database;
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
+public class MainMenuController implements Initializable {
+
+    @FXML private Button exitButton;
+    @FXML private ImageView attendanceImageButton;
+    @FXML private ImageView guestlistImageButton;
+    @FXML private ImageView meetingImageButton;
+    @FXML private ComboBox<String> themeComboBox;
+    
+    private String styleSheet;
+    
+    @FXML
+    private void handleAttendanceImageClickAction() {
+        try {
+            URL url = new File("src/com/palesd/gui/main/AttendanceMode.fxml").toURI().toURL();
+            FXMLLoader loader = new FXMLLoader(url);
+            Stage stage = new Stage(StageStyle.UNDECORATED);
+            Scene scene = new Scene((Pane) loader.load());
+            scene.getStylesheets().clear();
+            scene.getStylesheets().add(styleSheet);
+            AttendanceModeController controller = loader.<AttendanceModeController>getController();
+            controller.setStyleSheet(styleSheet);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+        }
+    }
+    
+    @FXML
+    private void handleGuestlistImageClickAction() {
+        try {
+            URL url = new File("src/com/palesd/gui/main/GuestlistMode.fxml").toURI().toURL();
+            FXMLLoader loader = new FXMLLoader(url);
+            Stage stage = new Stage(StageStyle.UNDECORATED);
+            Scene scene = new Scene((Pane) loader.load());
+            scene.getStylesheets().clear();
+            scene.getStylesheets().add(styleSheet);
+            GuestlistModeController controller = loader.<GuestlistModeController>getController();
+            controller.setStyleSheet(styleSheet);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    @FXML
+    private void handleMeetingImageClickAction() {
+        try {
+            URL url = new File("src/com/palesd/gui/main/MeetingMode.fxml").toURI().toURL();
+            FXMLLoader loader = new FXMLLoader(url);
+            Stage stage = new Stage(StageStyle.UNDECORATED);
+            Scene scene = new Scene((Pane) loader.load());
+            scene.getStylesheets().clear();
+            scene.getStylesheets().add(styleSheet);
+            MeetingModeController controller = loader.<MeetingModeController>getController();
+            controller.setStyleSheet(styleSheet);
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
+
+
+    @FXML
+    private void handleExitButtonAction() {
+        Database.closeConnection();
+        Stage stage = (Stage) exitButton.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    private void handleThemeSelectionAction() {
+        try {
+            Scene scene = themeComboBox.getScene();
+            scene.getStylesheets().clear();
+            styleSheet = new File("src/com/palesd/themes/" + themeComboBox.getValue() + ".css").toURI().toURL().toExternalForm();
+            scene.getStylesheets().add(styleSheet);
+        } catch (MalformedURLException ex) {
+            System.out.println(ex);
+        }
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        try {
+            styleSheet = new File("src/com/palesd/themes/Basic.css").toURI().toURL().toExternalForm();
+            themeComboBox.getItems().setAll(
+                    "Basic",
+                    "Brown",
+                    "Olive",
+                    "Night");
+            
+            Image attendanceImage = new Image(new File("src/com/palesd/images/attendance.jpg").toURI().toURL().toExternalForm());
+            attendanceImageButton.setImage(attendanceImage);
+            Image guestlistImage = new Image(new File("src/com/palesd/images/guestlist.jpg").toURI().toURL().toExternalForm());
+            guestlistImageButton.setImage(guestlistImage);
+            Image meetingImage = new Image(new File("src/com/palesd/images/meeting.jpg").toURI().toURL().toExternalForm());
+            meetingImageButton.setImage(meetingImage);
+        } catch (MalformedURLException ex) {
+            System.out.println(ex);
+        }
+    }
+
+}

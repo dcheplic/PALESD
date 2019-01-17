@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.palesd.gui.main.MainMenuController">
+  <children>
+    <Label layoutX="237.0" layoutY="13.0" text="Welcome to PALESD" textAlignment="CENTER">
+      <font>
+        <Font size="50.0" />
+      </font>
+    </Label>
+    <Label layoutX="66.0" layoutY="375.0" text="Meeting Mode">
+      <font>
+        <Font size="24.0" fx:id="x1" />
+      </font>
+    </Label>
+    <Label font="$x1" layoutX="305.0" layoutY="375.0" text="Attendance Mode" />
+    <Label font="$x1" layoutX="571.0" layoutY="373.0" text="Guest List Mode" />
+    <Button fx:id="exitButton" font="$x1" layoutX="708.0" layoutY="424.0" mnemonicParsing="false" onMouseClicked="#handleExitButtonAction" text="Exit" />
+    <ComboBox fx:id="themeComboBox" layoutX="14.0" layoutY="15.0" onAction="#handleThemeSelectionAction" prefWidth="158.0" promptText="Theme" visible="true">
+      <items>
+        <FXCollections fx:factory="observableArrayList">
+          <String fx:value="Item 1" />
+          <String fx:value="Item 2" />
+          <String fx:value="Item 3" />
+        </FXCollections>
+      </items>
+    </ComboBox>
+    <ImageView fx:id="attendanceImageButton" fitHeight="280.0" fitWidth="225.0" layoutX="288.0" layoutY="90.0" onMouseClicked="#handleAttendanceImageClickAction" pickOnBounds="true" preserveRatio="false" />
+    <ImageView id="attendanceImageButton" fx:id="meetingImageButton" fitHeight="280.0" fitWidth="225.0" layoutX="32.0" layoutY="90.0" onMouseClicked="#handleMeetingImageClickAction" pickOnBounds="true" preserveRatio="false" />
+    <ImageView id="attendanceImageButton" fx:id="guestlistImageButton" fitHeight="280.0" fitWidth="225.0" layoutX="544.0" layoutY="90.0" onMouseClicked="#handleGuestlistImageClickAction" pickOnBounds="true" preserveRatio="false" />
+  </children>
+</AnchorPane>

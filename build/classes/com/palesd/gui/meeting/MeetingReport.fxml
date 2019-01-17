@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.palesd.gui.meeting.MeetingReportController">
+  <children>
+    <TableView layoutX="16.0" layoutY="14.0" prefHeight="404.0" prefWidth="770.0">
+      <columns>
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="200.0" text="Name" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="146.0" text="Number" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="144.0" text="Attendance" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="152.0" text="Meetings" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="127.0" text="Percentage" />
+      </columns>
+    </TableView>
+    <Button fx:id="exitButton" layoutX="16.0" layoutY="431.0" mnemonicParsing="false" onMouseClicked="#handleExitButtonAction" text="Exit">
+      <font>
+        <Font size="20.0" fx:id="x1" />
+      </font>
+    </Button>
+    <Button font="$x1" layoutX="710.0" layoutY="431.0" mnemonicParsing="false" text="Print" />
+  </children>
+</AnchorPane>

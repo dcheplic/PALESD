@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.palesd.gui.main.MeetingModeController">
+  <children>
+    <Button fx:id="addClubButton" layoutX="75.0" layoutY="115.0" mnemonicParsing="false" onMouseClicked="#handleAddClubButtonAction" onMousePressed="#handleAddClubButtonHold" onMouseReleased="#handleHoldRelease" text="Add New Club">
+      <font>
+        <Font size="25.0" fx:id="x1" />
+      </font>
+    </Button>
+    <Button fx:id="editClubButton" font="$x1" layoutX="75.0" layoutY="228.0" mnemonicParsing="false" onMouseClicked="#handleEditClubButtonAction" onMousePressed="#handleEditClubButtonHold" onMouseReleased="#handleHoldRelease" text="Edit Existing Club" />
+    <Button fx:id="viewClubListsButton" font="$x1" layoutX="75.0" layoutY="285.0" mnemonicParsing="false" onMouseClicked="#handleViewClubListsButtonAction" onMousePressed="#handleViewClubListsButtonHold" onMouseReleased="#handleHoldRelease" text="View Club List" />
+    <Button fx:id="deleteClubButton" font="$x1" layoutX="75.0" layoutY="341.0" mnemonicParsing="false" onMouseClicked="#handleDeleteClubButtonAction" onMousePressed="#handleDeleteClubButtonHold" onMouseReleased="#handleHoldRelease" text="Delete Club" />
+    <Button fx:id="takeMeetingAttendanceButton" font="$x1" layoutX="75.0" layoutY="171.0" mnemonicParsing="false" onMouseClicked="#handleTakeMeetingAttendanceButtonAction" onMousePressed="#handleTakeMeetingAttendanceButtonHold" onMouseReleased="#handleHoldRelease" text="Take Attendance" />
+    <Button fx:id="returnToMainMenuButton" layoutX="525.0" layoutY="414.0" mnemonicParsing="false" onMouseClicked="#handleReturnToMainMenuButtonAction" onMousePressed="#handleReturnToMainMenuButtonHold" onMouseReleased="#handleHoldRelease" text="Return to Main Menu">
+      <font>
+        <Font size="20.0" />
+      </font>
+    </Button>
+    <TextArea fx:id="buttonDescriptionTextArea" editable="false" layoutX="403.0" layoutY="119.0" prefHeight="265.0" prefWidth="346.0" promptText="Press and hold on a button to see a description here." wrapText="true" />
+    <Label layoutX="222.0" layoutY="29.0" text="Meeting Mode">
+      <font>
+        <Font size="50.0" />
+      </font>
+    </Label>
+  </children>
+</AnchorPane>

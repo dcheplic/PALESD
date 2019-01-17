@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.palesd.gui.main.GuestlistModeController">
+  <children>
+    <Button fx:id="startGuestlistEventButton" layoutX="62.0" layoutY="193.0" mnemonicParsing="false" onMouseClicked="#handleStartGuestlistEventButtonAction" onMousePressed="#handleStartGuestlistEventButtonHold" onMouseReleased="#handleHoldRelease" text="Start New Event">
+      <font>
+        <Font size="25.0" fx:id="x2" />
+      </font>
+    </Button>
+    <Button fx:id="viewPastGuestListEventButton" font="$x2" layoutX="62.0" layoutY="249.0" mnemonicParsing="false" onMouseClicked="#handleViewPastGuestlistEventButtonAction" onMousePressed="#handleViewPastGuestlistEventButtonHold" onMouseReleased="#handleHoldRelease" text="View Lists" />
+    <Button fx:id="deletePastGuestlistEventButton" font="$x2" layoutX="62.0" layoutY="307.0" mnemonicParsing="false" onMouseClicked="#handleDeletePastGuestlistEventButtonAction" onMousePressed="#handleDeletePastGuestlistEventButtonHold" onMouseReleased="#handleHoldRelease" text="Delete Lists" />
+    <Button fx:id="createGuestListButton" font="$x2" layoutX="62.0" layoutY="136.0" mnemonicParsing="false" onMouseClicked="#handleCreateListButtonAction" onMousePressed="#handleCreateListButtonHold" onMouseReleased="#handleHoldRelease" prefWidth="232.0" text="Create Guest List" />
+    <Button fx:id="returnToMainMenuButton" layoutX="524.0" layoutY="413.0" mnemonicParsing="false" onMouseClicked="#handleReturnToMainMenuButtonAction" onMousePressed="#handleReturnToMainMenuButtonHold" onMouseReleased="#handleHoldRelease" text="Return to Main Menu">
+      <font>
+        <Font size="20.0" fx:id="x1" />
+      </font>
+    </Button>
+    <TextArea fx:id="buttonDescriptionTextArea" editable="false" layoutX="402.0" layoutY="116.0" prefHeight="265.0" prefWidth="346.0" promptText="Press and hold on a button to see a description here." wrapText="true" />
+    <Label layoutX="221.0" layoutY="23.0" text="Guest List Mode">
+      <font>
+        <Font size="50.0" />
+      </font>
+    </Label>
+  </children>
+</AnchorPane>

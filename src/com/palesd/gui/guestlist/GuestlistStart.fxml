@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.palesd.gui.guestlist.GuestlistStartController">
+  <children>
+    <TextField fx:id="eventNameField" editable="false" layoutX="17.0" layoutY="45.0" prefHeight="39.0" prefWidth="366.0" promptText="Event Name" />
+    <Label layoutX="17.0" layoutY="13.0" text="Event Name">
+      <font>
+        <Font size="24.0" fx:id="x1" />
+      </font>
+    </Label>
+    <Label font="$x1" layoutX="17.0" layoutY="99.0" text="Guest List" />
+    <TextField fx:id="guestListNameField" editable="false" layoutX="17.0" layoutY="131.0" prefHeight="39.0" prefWidth="366.0" promptText="Select file from list" />
+    <Button fx:id="beginButton" layoutX="17.0" layoutY="199.0" mnemonicParsing="false" onMouseClicked="#handleBeginButtonAction" text="Begin">
+      <font>
+        <Font size="20.0" fx:id="x2" />
+      </font>
+    </Button>
+    <Button fx:id="cancelButton" font="$x2" layoutX="290.0" layoutY="199.0" mnemonicParsing="false" onMouseClicked="#handleCancelButtonAction" text="Cancel" />
+    <Label font="$x1" layoutX="411.0" layoutY="13.0" text="Files" />
+    <ListView fx:id="eventList" layoutX="411.0" layoutY="45.0" onMouseClicked="#handleSelectedEventAction" prefHeight="414.0" prefWidth="366.0" />
+  </children>
+</AnchorPane>

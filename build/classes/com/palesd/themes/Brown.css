@@ -1,0 +1,19 @@
+
+/* 
+    Document   : Brown
+*/
+
+.root{
+    -fx-font-family: "Tahoma";
+    -fx-base: #DFB951;
+    -fx-background: #A78732;
+    -fx-focus-color: #B6A678;
+}
+
+.combo-box {
+    -fx-font-size: 20;
+}
+
+.text-area {
+    -fx-font-size: 25;
+}

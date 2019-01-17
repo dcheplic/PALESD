@@ -1,0 +1,28 @@
+
+/* 
+    Document   : Night
+*/
+
+.root {
+    -fx-base: #3E3D3D;
+    -fx-background: #2D2C2C;
+    -fx-focus-color: #B7AFAE;
+    -fx-stroke: #BDBDBD;
+}
+
+.button {
+    -fx-text-fill: #BDBDBD;
+}
+
+.label {
+    -fx-text-fill: #BDBDBD;
+}
+
+.combo-box {
+    -fx-text-fill: #BDBDBD;
+    -fx-font-size: 20;
+}
+
+.text-area {
+    -fx-font-size: 25;
+}
