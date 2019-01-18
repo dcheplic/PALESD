@@ -52,7 +52,6 @@ public class GuestlistModeController implements Initializable {
             EventStartController controller = loader.<EventStartController>getController();
             controller.setIdentifier("_gue");
             controller.setStyleSheet(styleSheet);
-            stage.setFullScreen(true);
             stage.show();
         } catch (IOException ex) {
         }
@@ -68,15 +67,12 @@ public class GuestlistModeController implements Initializable {
         try {
             URL url = new File("src/com/palesd/gui/view_lists/DeleteLists.fxml").toURI().toURL();
             FXMLLoader loader = new FXMLLoader(url);
-            Stage stage = new Stage(StageStyle.UNDECORATED);
             Scene scene = new Scene((Pane) loader.load());
             scene.getStylesheets().clear();
             scene.getStylesheets().add(styleSheet);
-            stage.setScene(scene);
             DeleteListsController controller = loader.<DeleteListsController>getController();
             controller.setIdentifier("_gu%");
-            stage.setFullScreen(true);
-            stage.show();
+            MainMenu.pushAndSetScene(scene);
         } catch (IOException ex) {
         }
     }
@@ -93,8 +89,7 @@ public class GuestlistModeController implements Initializable {
     
     @FXML
     private void handleReturnToMainMenuButtonAction() {
-        Stage stage = (Stage) returnToMainMenuButton.getScene().getWindow();
-        stage.close();
+        MainMenu.popAndSetScene();
     }
     
     @FXML
@@ -107,15 +102,12 @@ public class GuestlistModeController implements Initializable {
         try {
             URL url = new File("src/com/palesd/gui/guestlist/GuestlistStart.fxml").toURI().toURL();
             FXMLLoader loader = new FXMLLoader(url);
-            Stage stage = new Stage(StageStyle.UNDECORATED);
             Scene scene = new Scene((Pane) loader.load());
             scene.getStylesheets().clear();
             scene.getStylesheets().add(styleSheet);
-            stage.setScene(scene);
             GuestlistStartController controller = loader.<GuestlistStartController>getController();
             controller.setStyleSheet(styleSheet);
-            stage.setFullScreen(true);
-            stage.show();
+            MainMenu.pushAndSetScene(scene);
         } catch (IOException ex) {
         }
     }
@@ -130,15 +122,12 @@ public class GuestlistModeController implements Initializable {
         try {
             URL url = new File("src/com/palesd/gui/view_lists/ViewLists.fxml").toURI().toURL();
             FXMLLoader loader = new FXMLLoader(url);
-            Stage stage = new Stage(StageStyle.UNDECORATED);
             Scene scene = new Scene((Pane) loader.load());
             scene.getStylesheets().clear();
             scene.getStylesheets().add(styleSheet);
-            stage.setScene(scene);
             ViewListsController controller = loader.<ViewListsController>getController();
             controller.setIdentifier("_gu%");
-            stage.setFullScreen(true);
-            stage.show();
+            MainMenu.pushAndSetScene(scene);
         } catch (IOException ex) {
         }
     }

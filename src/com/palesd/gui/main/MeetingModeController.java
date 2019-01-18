@@ -42,13 +42,10 @@ public class MeetingModeController implements Initializable {
         try {
             URL url = new File("src/com/palesd/gui/meeting/AddClub.fxml").toURI().toURL();
             FXMLLoader loader = new FXMLLoader(url);
-            Stage stage = new Stage(StageStyle.UNDECORATED);
             Scene scene = new Scene((Pane) loader.load());
             scene.getStylesheets().clear();
             scene.getStylesheets().add(styleSheet);
-            stage.setScene(scene);
-            stage.setFullScreen(true);
-            stage.show();
+            MainMenu.pushAndSetScene(scene);
         } catch (IOException ex) {
         }
     }
@@ -63,13 +60,10 @@ public class MeetingModeController implements Initializable {
         try {
             URL url = new File("src/com/palesd/gui/meeting/DeleteClub.fxml").toURI().toURL();
             FXMLLoader loader = new FXMLLoader(url);
-            Stage stage = new Stage(StageStyle.UNDECORATED);
             Scene scene = new Scene((Pane) loader.load());
             scene.getStylesheets().clear();
             scene.getStylesheets().add(styleSheet);
-            stage.setScene(scene);
-            stage.setFullScreen(true);
-            stage.show();
+            MainMenu.pushAndSetScene(scene);
         } catch (IOException ex) {
         }
     }
@@ -86,8 +80,7 @@ public class MeetingModeController implements Initializable {
 
     @FXML
     private void handleReturnToMainMenuButtonAction() {
-        Stage stage = (Stage) returnToMainMenuButton.getScene().getWindow();
-        stage.close();
+        MainMenu.popAndSetScene();
     }
     
     @FXML
@@ -100,13 +93,10 @@ public class MeetingModeController implements Initializable {
         try {
             URL url = new File("src/com/palesd/gui/meeting/EditClub.fxml").toURI().toURL();
             FXMLLoader loader = new FXMLLoader(url);
-            Stage stage = new Stage(StageStyle.UNDECORATED);
             Scene scene = new Scene((Pane) loader.load());
             scene.getStylesheets().clear();
             scene.getStylesheets().add(styleSheet);
-            stage.setScene(scene);
-            stage.setFullScreen(true);
-            stage.show();
+            MainMenu.pushAndSetScene(scene);
         } catch (IOException ex) {
         }
     }
@@ -141,15 +131,12 @@ public class MeetingModeController implements Initializable {
         try {
             URL url = new File("src/com/palesd/gui/meeting/ViewClubLists.fxml").toURI().toURL();
             FXMLLoader loader = new FXMLLoader(url);
-            Stage stage = new Stage(StageStyle.UNDECORATED);
             Scene scene = new Scene((Pane) loader.load());
             scene.getStylesheets().clear();
             scene.getStylesheets().add(styleSheet);
-            stage.setScene(scene);
             ViewClubListsController controller = loader.<ViewClubListsController>getController();
             controller.setStyleSheet(styleSheet);
-            stage.setFullScreen(true);
-            stage.show();
+            MainMenu.pushAndSetScene(scene);
         } catch (IOException ex) {
         }
     }

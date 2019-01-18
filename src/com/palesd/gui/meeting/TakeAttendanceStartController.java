@@ -5,6 +5,7 @@
  */
 package com.palesd.gui.meeting;
 
+import com.palesd.gui.main.MainMenu;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -16,7 +17,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -41,11 +41,8 @@ public class TakeAttendanceStartController implements Initializable {
         try {
             URL url = new File("src/com/palesd/gui/meeting/Meeting.fxml").toURI().toURL();
             Parent root = FXMLLoader.load(url);
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.initStyle(StageStyle.UNDECORATED);
-            stage.setFullScreen(true);
-            stage.show();
+            Scene scene = new Scene(root);
+            MainMenu.pushAndSetScene(scene);
         } catch (IOException ex) {
         }
         Stage stage = (Stage) beginButton.getScene().getWindow();

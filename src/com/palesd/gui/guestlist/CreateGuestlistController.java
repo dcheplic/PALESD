@@ -6,6 +6,7 @@
 package com.palesd.gui.guestlist;
 
 import com.palesd.database.Database;
+import com.palesd.gui.main.MainMenu;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -18,7 +19,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -59,8 +59,7 @@ public class CreateGuestlistController implements Initializable {
     
     @FXML
     private void handleExitButtonAction() {
-        Stage stage = (Stage) exitButton.getScene().getWindow();
-        stage.close();
+        MainMenu.popAndSetScene();
     }
     
     @FXML

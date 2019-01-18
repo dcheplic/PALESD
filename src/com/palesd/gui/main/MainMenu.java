@@ -7,6 +7,7 @@ package com.palesd.gui.main;
 
 import com.palesd.database.Database;
 import java.io.File;
+import java.util.Stack;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -20,6 +21,9 @@ import javafx.stage.StageStyle;
  */
 public class MainMenu extends Application {
     
+    private static Stage bigStage;
+    private static final Stack<Scene> sceneStack = new Stack();
+    
     @Override
     public void start(Stage stage) throws Exception {
         Database.openConnection();
@@ -28,10 +32,11 @@ public class MainMenu extends Application {
         Scene scene = new Scene(root);
         scene.getStylesheets().clear();
         scene.getStylesheets().add(new File("src/com/palesd/themes/Basic.css").toURI().toURL().toExternalForm());
-        stage.setScene(scene);
-        stage.initStyle(StageStyle.UNDECORATED);
-        stage.setFullScreen(true);
-        stage.show();
+        sceneStack.push(scene);
+        bigStage = stage;
+        bigStage.setScene(sceneStack.peek());
+        bigStage.initStyle(StageStyle.UNDECORATED);
+        bigStage.show();
     }
 
     /**
@@ -41,4 +46,13 @@ public class MainMenu extends Application {
         launch(args);
     }
     
+    public static void popAndSetScene() {
+        sceneStack.pop();
+        bigStage.setScene(sceneStack.peek());
+    }
+    
+    public static void pushAndSetScene(Scene scene) {
+        sceneStack.push(scene);
+        bigStage.setScene(sceneStack.peek());
+    }
 }

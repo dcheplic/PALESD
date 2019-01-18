@@ -6,6 +6,7 @@
 package com.palesd.gui.view_lists;
 
 import com.palesd.database.Database;
+import com.palesd.gui.main.MainMenu;
 import com.palesd.models.Guest;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -20,7 +21,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -29,7 +29,7 @@ import javafx.stage.Stage;
  */
 public class DeleteListsController implements Initializable {
     
-    @FXML private Button cancelButton;
+    @FXML private Button exitButton;
     @FXML private Button deleteButton;
     @FXML private ListView<String> eventList;
     @FXML private TableColumn<Guest, String> nameCol;
@@ -40,9 +40,8 @@ public class DeleteListsController implements Initializable {
     private String selectedEvent;
     
     @FXML
-    private void handleCancelButtonAction() {
-        Stage stage = (Stage) cancelButton.getScene().getWindow();
-        stage.close();
+    private void handleExitButtonAction() {
+        MainMenu.popAndSetScene();
     }
     
     @FXML

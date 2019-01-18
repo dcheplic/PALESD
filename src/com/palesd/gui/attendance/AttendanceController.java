@@ -1,6 +1,7 @@
 package com.palesd.gui.attendance;
 
 import com.palesd.database.Database;
+import com.palesd.gui.main.MainMenu;
 import com.palesd.models.Guest;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -16,7 +17,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 
 public class AttendanceController implements Initializable {
 
@@ -45,8 +45,7 @@ public class AttendanceController implements Initializable {
     
     @FXML
     private void handleExitButtonAction() {
-        Stage stage = (Stage) exitButton.getScene().getWindow();
-        stage.close();
+        MainMenu.popAndSetScene();
     }
     
     @FXML

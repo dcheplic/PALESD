@@ -6,6 +6,7 @@
 package com.palesd.gui.guestlist;
 
 import com.palesd.database.Database;
+import com.palesd.gui.main.MainMenu;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -21,8 +22,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -34,7 +33,7 @@ public class GuestlistStartController implements Initializable {
     private final String identifier = "_guat";
     
     @FXML private Button beginButton;
-    @FXML private Button cancelButton;
+    @FXML private Button exitButton;
     @FXML private ListView<String> eventList;
     @FXML private TextField eventNameField;
     @FXML private TextField guestListNameField;
@@ -49,27 +48,21 @@ public class GuestlistStartController implements Initializable {
                 Database.createTable(eventNameField.getText() + identifier);
                 
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("Guestlist.fxml"));
-                Stage stage = new Stage(StageStyle.UNDECORATED);
                 Scene scene = new Scene((Pane) loader.load());
                 scene.getStylesheets().clear();
                 scene.getStylesheets().add(styleSheet);
-                stage.setScene(scene);
                 GuestlistController controller = loader.<GuestlistController>getController();
                 controller.setGuestlistName(selectedEvent);
                 controller.setEventName(eventNameField.getText() + identifier);
-                stage.show();
+                MainMenu.pushAndSetScene(scene);
             } catch (IOException ex) {
             }
-        
-            Stage stage = (Stage) cancelButton.getScene().getWindow();
-            stage.close();
         }
     }
     
     @FXML
-    private void handleCancelButtonAction() {
-        Stage stage = (Stage) cancelButton.getScene().getWindow();
-        stage.close();
+    private void handleExitButtonAction() {
+        MainMenu.popAndSetScene();
     }
     
     @FXML

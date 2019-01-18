@@ -5,12 +5,12 @@
  */
 package com.palesd.gui.meeting;
 
+import com.palesd.gui.main.MainMenu;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -24,8 +24,7 @@ public class EditClubController implements Initializable {
     
     @FXML
     private void handleExitButtonAction() {
-        Stage stage = (Stage) exitButton.getScene().getWindow();
-        stage.close();
+        MainMenu.popAndSetScene();
     }
     
     /**
@@ -35,7 +34,7 @@ public class EditClubController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
     }    
     
 }

@@ -5,18 +5,12 @@
  */
 package com.palesd.gui.meeting;
 
-import java.io.File;
-import java.io.IOException;
+import com.palesd.gui.main.MainMenu;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -30,8 +24,7 @@ public class DeleteClubController implements Initializable {
     
     @FXML
     private void handleExitButtonAction() {
-        Stage stage = (Stage) exitButton.getScene().getWindow();
-        stage.close();
+        MainMenu.popAndSetScene();
     }
     
     /**

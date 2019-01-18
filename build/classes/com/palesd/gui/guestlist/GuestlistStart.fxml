@@ -17,12 +17,12 @@
     </Label>
     <Label font="$x1" layoutX="17.0" layoutY="99.0" text="Guest List" />
     <TextField fx:id="guestListNameField" editable="false" layoutX="17.0" layoutY="131.0" prefHeight="39.0" prefWidth="366.0" promptText="Select file from list" />
-    <Button fx:id="beginButton" layoutX="17.0" layoutY="199.0" mnemonicParsing="false" onMouseClicked="#handleBeginButtonAction" text="Begin">
+    <Button fx:id="beginButton" layoutX="299.0" layoutY="189.0" mnemonicParsing="false" onMouseClicked="#handleBeginButtonAction" text="Begin">
       <font>
         <Font size="20.0" fx:id="x2" />
       </font>
     </Button>
-    <Button fx:id="cancelButton" font="$x2" layoutX="290.0" layoutY="199.0" mnemonicParsing="false" onMouseClicked="#handleCancelButtonAction" text="Cancel" />
+    <Button id="cancelButton" fx:id="exitButton" font="$x2" layoutX="17.0" layoutY="189.0" mnemonicParsing="false" onMouseClicked="#handleExitButtonAction" text="Exit" />
     <Label font="$x1" layoutX="411.0" layoutY="13.0" text="Files" />
     <ListView fx:id="eventList" layoutX="411.0" layoutY="45.0" onMouseClicked="#handleSelectedEventAction" prefHeight="414.0" prefWidth="366.0" />
   </children>

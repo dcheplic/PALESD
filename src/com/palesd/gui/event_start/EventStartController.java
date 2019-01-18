@@ -8,6 +8,7 @@ package com.palesd.gui.event_start;
 import com.palesd.database.Database;
 import com.palesd.gui.attendance.AttendanceController;
 import com.palesd.gui.guestlist.CreateGuestlistController;
+import com.palesd.gui.main.MainMenu;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -21,7 +22,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -30,7 +30,7 @@ import javafx.stage.StageStyle;
  */
 public class EventStartController implements Initializable {
     
-    @FXML private Button beginButton;
+    @FXML private Button exitButton;
     @FXML private Button cancelButton;
     @FXML private TextField eventNameField;
     
@@ -43,11 +43,13 @@ public class EventStartController implements Initializable {
             attedanceEventStartHelper();
        else if (identifier.equals("_gue"))
            guestListCreationStartHelper();
+        Stage stage = (Stage) exitButton.getScene().getWindow();
+        stage.close();
     }
     
     @FXML
-    private void handleCancelButtonAction() {
-        Stage stage = (Stage) cancelButton.getScene().getWindow();
+    private void handleExitButtonAction() {
+        Stage stage = (Stage) exitButton.getScene().getWindow();
         stage.close();
     }
     
@@ -73,12 +75,10 @@ public class EventStartController implements Initializable {
 
                 URL url = new File("src/com/palesd/gui/attendance/Attendance.fxml").toURI().toURL();
                 FXMLLoader loader = new FXMLLoader(url);
-                Stage stage = new Stage(StageStyle.UNDECORATED);
-                stage.setScene(new Scene((Pane) loader.load()));
+                Scene scene = new Scene((Pane) loader.load());
                 AttendanceController controller = loader.<AttendanceController>getController();
                 controller.setEventName(eventNameField.getText() + identifier);
-                stage.setFullScreen(true);
-                stage.show();
+                MainMenu.pushAndSetScene(scene);
             } catch (IOException ex) {
             }
 
@@ -94,21 +94,15 @@ public class EventStartController implements Initializable {
                 
                 URL url = new File("src/com/palesd/gui/guestlist/CreateGuestlist.fxml").toURI().toURL();
                 FXMLLoader loader = new FXMLLoader(url);
-                Stage stage = new Stage(StageStyle.UNDECORATED);
                 Scene scene = new Scene((Pane) loader.load());
                 scene.getStylesheets().clear();
                 scene.getStylesheets().add(styleSheet);
-                stage.setScene(scene);
                 CreateGuestlistController controller = loader.<CreateGuestlistController>getController();
                 controller.setEventName(eventNameField.getText() + identifier);
                 controller.setStyleSheet(styleSheet);
-                stage.setFullScreen(true);
-                stage.show();
+                MainMenu.pushAndSetScene(scene);
             } catch (IOException ex) {
             }
-        
-            Stage stage = (Stage) cancelButton.getScene().getWindow();
-            stage.close();
         }
     }
     

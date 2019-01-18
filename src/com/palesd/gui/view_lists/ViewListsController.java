@@ -6,6 +6,7 @@
 package com.palesd.gui.view_lists;
 
 import com.palesd.database.Database;
+import com.palesd.gui.main.MainMenu;
 import com.palesd.models.Guest;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -29,16 +30,15 @@ import javafx.stage.Stage;
  */
 public class ViewListsController implements Initializable {
 
-    @FXML private Button cancelButton;
+    @FXML private Button exitButton;
     @FXML private ListView<String> eventList;
     @FXML private TableColumn<Guest, String> nameCol;
     @FXML private TableColumn<Guest, String> numberCol;
     @FXML private TableView eventGuestTable;
     
     @FXML
-    private void handleCancelButtonAction() {
-        Stage stage = (Stage) cancelButton.getScene().getWindow();
-        stage.close();
+    private void handleExitButtonAction() {
+        MainMenu.popAndSetScene();
     }
     
     @FXML

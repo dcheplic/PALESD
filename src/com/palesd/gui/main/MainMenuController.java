@@ -16,7 +16,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 public class MainMenuController implements Initializable {
 
@@ -33,15 +32,12 @@ public class MainMenuController implements Initializable {
         try {
             URL url = new File("src/com/palesd/gui/main/AttendanceMode.fxml").toURI().toURL();
             FXMLLoader loader = new FXMLLoader(url);
-            Stage stage = new Stage(StageStyle.UNDECORATED);
             Scene scene = new Scene((Pane) loader.load());
             scene.getStylesheets().clear();
             scene.getStylesheets().add(styleSheet);
             AttendanceModeController controller = loader.<AttendanceModeController>getController();
             controller.setStyleSheet(styleSheet);
-            stage.setScene(scene);
-            stage.setFullScreen(true);
-            stage.show();
+            MainMenu.pushAndSetScene(scene);
         } catch (IOException ex) {
         }
     }
@@ -51,15 +47,12 @@ public class MainMenuController implements Initializable {
         try {
             URL url = new File("src/com/palesd/gui/main/GuestlistMode.fxml").toURI().toURL();
             FXMLLoader loader = new FXMLLoader(url);
-            Stage stage = new Stage(StageStyle.UNDECORATED);
             Scene scene = new Scene((Pane) loader.load());
             scene.getStylesheets().clear();
             scene.getStylesheets().add(styleSheet);
             GuestlistModeController controller = loader.<GuestlistModeController>getController();
             controller.setStyleSheet(styleSheet);
-            stage.setScene(scene);
-            stage.setFullScreen(true);
-            stage.show();
+            MainMenu.pushAndSetScene(scene);
         } catch (IOException ex) {
             System.out.println(ex);
         }
@@ -70,15 +63,12 @@ public class MainMenuController implements Initializable {
         try {
             URL url = new File("src/com/palesd/gui/main/MeetingMode.fxml").toURI().toURL();
             FXMLLoader loader = new FXMLLoader(url);
-            Stage stage = new Stage(StageStyle.UNDECORATED);
             Scene scene = new Scene((Pane) loader.load());
             scene.getStylesheets().clear();
             scene.getStylesheets().add(styleSheet);
             MeetingModeController controller = loader.<MeetingModeController>getController();
             controller.setStyleSheet(styleSheet);
-            stage.setScene(scene);
-            stage.setFullScreen(true);
-            stage.show();
+            MainMenu.pushAndSetScene(scene);
         } catch (IOException ex) {
             System.out.println(ex);
         }

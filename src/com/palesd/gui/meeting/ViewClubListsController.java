@@ -5,6 +5,7 @@
  */
 package com.palesd.gui.meeting;
 
+import com.palesd.gui.main.MainMenu;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -15,8 +16,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 /**
  * FXML Controller class
@@ -34,8 +33,7 @@ public class ViewClubListsController implements Initializable {
     
     @FXML
     private void handleExitButtonAction() {
-        Stage stage = (Stage) exitButton.getScene().getWindow();
-        stage.close();
+        MainMenu.popAndSetScene();
     }
     
     @FXML
@@ -43,12 +41,10 @@ public class ViewClubListsController implements Initializable {
         try {
                 URL url = new File("src/com/palesd/gui/meeting/MeetingReport.fxml").toURI().toURL();
                 FXMLLoader loader = new FXMLLoader(url);
-                Stage stage = new Stage(StageStyle.UNDECORATED);
                 Scene scene = new Scene((Pane) loader.load());
                 scene.getStylesheets().clear();
                 scene.getStylesheets().add(styleSheet);
-                stage.setScene(scene);
-                stage.show();
+                MainMenu.pushAndSetScene(scene);
             } catch (IOException ex) {
             }
     }
