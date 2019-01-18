@@ -79,6 +79,7 @@ public class MainMenuController implements Initializable {
     private void handleExitButtonAction() {
         Database.closeConnection();
         Stage stage = (Stage) exitButton.getScene().getWindow();
+        MainMenu.popAndSetScene();
         stage.close();
     }
 
