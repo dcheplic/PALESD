@@ -47,6 +47,7 @@ public class MeetingModeController implements Initializable {
             scene.getStylesheets().clear();
             scene.getStylesheets().add(styleSheet);
             stage.setScene(scene);
+            stage.setFullScreen(true);
             stage.show();
         } catch (IOException ex) {
         }
@@ -67,6 +68,7 @@ public class MeetingModeController implements Initializable {
             scene.getStylesheets().clear();
             scene.getStylesheets().add(styleSheet);
             stage.setScene(scene);
+            stage.setFullScreen(true);
             stage.show();
         } catch (IOException ex) {
         }
@@ -103,6 +105,7 @@ public class MeetingModeController implements Initializable {
             scene.getStylesheets().clear();
             scene.getStylesheets().add(styleSheet);
             stage.setScene(scene);
+            stage.setFullScreen(true);
             stage.show();
         } catch (IOException ex) {
         }
@@ -145,6 +148,7 @@ public class MeetingModeController implements Initializable {
             stage.setScene(scene);
             ViewClubListsController controller = loader.<ViewClubListsController>getController();
             controller.setStyleSheet(styleSheet);
+            stage.setFullScreen(true);
             stage.show();
         } catch (IOException ex) {
         }

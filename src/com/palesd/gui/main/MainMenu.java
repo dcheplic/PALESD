@@ -30,6 +30,7 @@ public class MainMenu extends Application {
         scene.getStylesheets().add(new File("src/com/palesd/themes/Basic.css").toURI().toURL().toExternalForm());
         stage.setScene(scene);
         stage.initStyle(StageStyle.UNDECORATED);
+        stage.setFullScreen(true);
         stage.show();
     }
 

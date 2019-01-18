@@ -49,6 +49,7 @@ public class AttendanceModeController implements Initializable {
             stage.setScene(scene);
             DeleteListsController controller = loader.<DeleteListsController>getController();
             controller.setIdentifier("_att");
+            stage.setFullScreen(true);
             stage.show();
         } catch (IOException ex) {
         }
@@ -109,6 +110,7 @@ public class AttendanceModeController implements Initializable {
             stage.setScene(scene);
             ViewListsController controller = loader.<ViewListsController>getController();
             controller.setIdentifier("_att");
+            stage.setFullScreen(true);
             stage.show();
         } catch (IOException ex) {
         }

@@ -40,6 +40,7 @@ public class MainMenuController implements Initializable {
             AttendanceModeController controller = loader.<AttendanceModeController>getController();
             controller.setStyleSheet(styleSheet);
             stage.setScene(scene);
+            stage.setFullScreen(true);
             stage.show();
         } catch (IOException ex) {
         }
@@ -57,6 +58,7 @@ public class MainMenuController implements Initializable {
             GuestlistModeController controller = loader.<GuestlistModeController>getController();
             controller.setStyleSheet(styleSheet);
             stage.setScene(scene);
+            stage.setFullScreen(true);
             stage.show();
         } catch (IOException ex) {
             System.out.println(ex);
@@ -75,6 +77,7 @@ public class MainMenuController implements Initializable {
             MeetingModeController controller = loader.<MeetingModeController>getController();
             controller.setStyleSheet(styleSheet);
             stage.setScene(scene);
+            stage.setFullScreen(true);
             stage.show();
         } catch (IOException ex) {
             System.out.println(ex);

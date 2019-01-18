@@ -77,6 +77,7 @@ public class EventStartController implements Initializable {
                 stage.setScene(new Scene((Pane) loader.load()));
                 AttendanceController controller = loader.<AttendanceController>getController();
                 controller.setEventName(eventNameField.getText() + identifier);
+                stage.setFullScreen(true);
                 stage.show();
             } catch (IOException ex) {
             }
@@ -101,6 +102,7 @@ public class EventStartController implements Initializable {
                 CreateGuestlistController controller = loader.<CreateGuestlistController>getController();
                 controller.setEventName(eventNameField.getText() + identifier);
                 controller.setStyleSheet(styleSheet);
+                stage.setFullScreen(true);
                 stage.show();
             } catch (IOException ex) {
             }

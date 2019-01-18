@@ -44,6 +44,7 @@ public class TakeAttendanceStartController implements Initializable {
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.initStyle(StageStyle.UNDECORATED);
+            stage.setFullScreen(true);
             stage.show();
         } catch (IOException ex) {
         }

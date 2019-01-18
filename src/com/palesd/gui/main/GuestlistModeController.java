@@ -52,6 +52,7 @@ public class GuestlistModeController implements Initializable {
             EventStartController controller = loader.<EventStartController>getController();
             controller.setIdentifier("_gue");
             controller.setStyleSheet(styleSheet);
+            stage.setFullScreen(true);
             stage.show();
         } catch (IOException ex) {
         }
@@ -74,6 +75,7 @@ public class GuestlistModeController implements Initializable {
             stage.setScene(scene);
             DeleteListsController controller = loader.<DeleteListsController>getController();
             controller.setIdentifier("_gu%");
+            stage.setFullScreen(true);
             stage.show();
         } catch (IOException ex) {
         }
@@ -112,6 +114,7 @@ public class GuestlistModeController implements Initializable {
             stage.setScene(scene);
             GuestlistStartController controller = loader.<GuestlistStartController>getController();
             controller.setStyleSheet(styleSheet);
+            stage.setFullScreen(true);
             stage.show();
         } catch (IOException ex) {
         }
@@ -134,6 +137,7 @@ public class GuestlistModeController implements Initializable {
             stage.setScene(scene);
             ViewListsController controller = loader.<ViewListsController>getController();
             controller.setIdentifier("_gu%");
+            stage.setFullScreen(true);
             stage.show();
         } catch (IOException ex) {
         }
