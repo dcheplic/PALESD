@@ -12,6 +12,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
@@ -36,6 +37,8 @@ public class MainMenu extends Application {
         bigStage = stage;
         bigStage.setScene(sceneStack.peek());
         bigStage.initStyle(StageStyle.UNDECORATED);
+        bigStage.setFullScreen(true);
+        bigStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
         bigStage.show();
     }
 
