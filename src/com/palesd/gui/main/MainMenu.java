@@ -37,8 +37,6 @@ public class MainMenu extends Application {
         bigStage = stage;
         bigStage.setScene(sceneStack.peek());
         bigStage.initStyle(StageStyle.UNDECORATED);
-        bigStage.setFullScreen(true);
-        bigStage.setFullScreenExitKeyCombination(KeyCombination.NO_MATCH);
         bigStage.show();
     }
 
