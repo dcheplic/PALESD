@@ -49,6 +49,10 @@ public class MainMenu extends Application {
         launch(args);
     }
     
+    public static void closeStage() {
+        bigStage.close();
+    }
+    
     public static void popAndSetScene() {
         sceneStack.pop();
         bigStage.setScene(sceneStack.peek());

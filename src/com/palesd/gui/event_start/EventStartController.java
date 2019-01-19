@@ -30,8 +30,8 @@ import javafx.stage.Stage;
  */
 public class EventStartController implements Initializable {
     
+    @FXML private Button beginButton;
     @FXML private Button exitButton;
-    @FXML private Button cancelButton;
     @FXML private TextField eventNameField;
     
     private String identifier;
@@ -76,14 +76,13 @@ public class EventStartController implements Initializable {
                 URL url = new File("src/com/palesd/gui/attendance/Attendance.fxml").toURI().toURL();
                 FXMLLoader loader = new FXMLLoader(url);
                 Scene scene = new Scene((Pane) loader.load());
+                scene.getStylesheets().clear();
+                scene.getStylesheets().add(styleSheet);
                 AttendanceController controller = loader.<AttendanceController>getController();
                 controller.setEventName(eventNameField.getText() + identifier);
                 MainMenu.pushAndSetScene(scene);
             } catch (IOException ex) {
             }
-
-            Stage stage = (Stage) cancelButton.getScene().getWindow();
-            stage.close();
         }
     }
     
