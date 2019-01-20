@@ -42,8 +42,8 @@ public class Database {
         //SQL statement for creating a new table
         String sql = "CREATE TABLE IF NOT EXISTS '" + tableName + "' (\n"
                 + " id integer PRIMARY KEY,\n"
-                + " name text NOT NULL,\n"
-                + " titanCard text\n"
+                + " name text NOT NULL UNIQUE,\n"
+                + " titanCard text UNIQUE"
                 + ");";
         try {
             Statement statement = connection.createStatement();

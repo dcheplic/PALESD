@@ -35,8 +35,13 @@ public class AttendanceController implements Initializable {
         String fixedNum = cardField.getText();
         if (cardField.getText().contains(";000") && (cardField.getText().endsWith("?") || cardField.getText().endsWith("?+E?")))
             fixedNum = fixedNum.substring(4,10);
-        if(!nameField.getText().trim().isEmpty() && !cardField.getText().trim().isEmpty())
+        if(!nameField.getText().trim().isEmpty() && !cardField.getText().trim().isEmpty()) {
             Database.insert(eventName, nameField.getText(), fixedNum);
+            Database.insert("Master List", nameField.getText(), fixedNum);
+        } else if(nameField.getText().trim().isEmpty())
+            for(Guest guest : createGuestList("Master List"))
+                if(cardField.getText().equals(guest.getNumber()))
+                    Database.insert(eventName, guest.getName(), guest.getNumber());
         
         attendanceTable.getItems().setAll(createGuestList(eventName));
         nameField.clear();
@@ -50,15 +55,7 @@ public class AttendanceController implements Initializable {
     
     @FXML
     private void onEnter(ActionEvent ae) {
-        String fixedNum = cardField.getText();
-        if (cardField.getText().contains(";000") && (cardField.getText().endsWith("?") || cardField.getText().endsWith("?+E?")))
-            fixedNum = fixedNum.substring(4,10);
-        if(!nameField.getText().trim().isEmpty() && !cardField.getText().trim().isEmpty())
-            Database.insert(eventName, nameField.getText(), fixedNum);
-        
-        attendanceTable.getItems().setAll(createGuestList(eventName));
-        nameField.clear();
-        cardField.clear();
+        handleAddGuestButtonAction();
     }
     
     private List<Guest> createGuestList(String eventName) {
@@ -76,6 +73,8 @@ public class AttendanceController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        //Database.createTable("Master List");
+        //Database.deleteTable("Master List");
         nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         numberCol.setCellValueFactory(new PropertyValueFactory<>("number"));
     }

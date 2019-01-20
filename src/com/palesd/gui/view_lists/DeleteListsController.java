@@ -47,6 +47,10 @@ public class DeleteListsController implements Initializable {
     @FXML
     private void handleDeleteButtonAction() {
             Database.deleteTable(selectedEvent);
+            if(selectedEvent.contains("_gue"))
+                Database.deleteTable(selectedEvent.substring(0, selectedEvent.length()-4) + "_guat");
+            if(selectedEvent.contains("_guat"))
+                Database.deleteTable(selectedEvent.substring(0, selectedEvent.length()-5) + "_gue");
             eventList.getItems().setAll(createEventList(identifier));
             eventGuestTable.getItems().clear();
     }

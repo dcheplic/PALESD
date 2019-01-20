@@ -54,14 +54,12 @@ public class GuestlistController implements Initializable {
         String fixedNum = cardField.getText();
         if (cardField.getText().contains(";000") && (cardField.getText().endsWith("?") || cardField.getText().endsWith("?+E?")))
             fixedNum = fixedNum.substring(4,10);
-        if(!guestList.getItems().contains(nameField.getText())) {
-            status.setText("NOT ON LIST");
-        } else if(onList) {
-            status.setText("ALREADY SIGNED IN");
-        } else if(!nameField.getText().trim().isEmpty() && !cardField.getText().trim().isEmpty()) {
-            Database.insert(eventName, nameField.getText(), fixedNum);
-            status.setText("ON LIST");
-        }
+        if(!nameField.getText().trim().isEmpty() && !cardField.getText().trim().isEmpty())
+            addGuestHelperNoSwipe(eventName, onList, fixedNum);
+        else if(nameField.getText().trim().isEmpty())
+            for(Guest guest : createGuestList("Master List"))
+                if(cardField.getText().equals(guest.getNumber()))
+                    addGuestHelperSwipe(onList, eventName, guest.getName(), guest.getNumber());
         
         attendanceTable.getItems().setAll(createGuestList(eventName));
         nameField.clear();
@@ -88,6 +86,28 @@ public class GuestlistController implements Initializable {
         nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         numberCol.setCellValueFactory(new PropertyValueFactory<>("number"));
         status.setText(guestListName);
+    }
+    
+    private void addGuestHelperNoSwipe(String eventName, boolean onList, String fixedNum) {
+        if(!guestList.getItems().contains(nameField.getText())) {
+            status.setText("NOT ON LIST");
+        } else if(onList) {
+            status.setText("ALREADY SIGNED IN");
+        } else {
+            Database.insert(eventName, nameField.getText(), fixedNum);
+            status.setText("ON LIST");
+        }
+    }
+    
+    private void addGuestHelperSwipe(boolean onList, String eventName, String name, String cardNum) {
+        if(!guestList.getItems().contains(name)) {
+            status.setText("NOT ON LIST");
+        } else if(onList) {
+            status.setText("ALREADY SIGNED IN");
+        } else {
+            Database.insert(eventName, name, cardNum);
+            status.setText("ON LIST");
+        }
     }
     
     private List<Guest> createGuestList(String eventName) {

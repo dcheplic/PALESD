@@ -84,6 +84,7 @@ public class AttendanceModeController implements Initializable {
             stage.setScene(scene);
             EventStartController controller = loader.<EventStartController>getController();
             controller.setIdentifier("_att");
+            controller.setStyleSheet(styleSheet);
             stage.show();
         } catch (IOException ex) {
         }
