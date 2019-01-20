@@ -57,9 +57,13 @@ public class GuestlistController implements Initializable {
         if(!nameField.getText().trim().isEmpty() && !cardField.getText().trim().isEmpty())
             addGuestHelperNoSwipe(eventName, onList, fixedNum);
         else if(nameField.getText().trim().isEmpty())
-            for(Guest guest : createGuestList("Master List"))
-                if(cardField.getText().equals(guest.getNumber()))
+            for(Guest guest : createGuestList("Master List")) {
+                if(fixedNum.equals(guest.getNumber()))
                     addGuestHelperSwipe(onList, eventName, guest.getName(), guest.getNumber());
+                else
+                    status.setText("NOT ON LIST");
+            }
+                        
         
         attendanceTable.getItems().setAll(createGuestList(eventName));
         nameField.clear();

@@ -40,7 +40,7 @@ public class AttendanceController implements Initializable {
             Database.insert("Master List", nameField.getText(), fixedNum);
         } else if(nameField.getText().trim().isEmpty())
             for(Guest guest : createGuestList("Master List"))
-                if(cardField.getText().equals(guest.getNumber()))
+                if(fixedNum.equals(guest.getNumber()))
                     Database.insert(eventName, guest.getName(), guest.getNumber());
         
         attendanceTable.getItems().setAll(createGuestList(eventName));
