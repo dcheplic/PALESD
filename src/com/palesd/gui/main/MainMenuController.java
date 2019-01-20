@@ -1,6 +1,7 @@
 package com.palesd.gui.main;
 
 import com.palesd.database.Database;
+import com.palesd.gui.view_lists.DeleteListsController;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -15,11 +16,11 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
 
 public class MainMenuController implements Initializable {
 
     @FXML private Button exitButton;
+    @FXML private Button MASTER;
     @FXML private ImageView attendanceImageButton;
     @FXML private ImageView guestlistImageButton;
     @FXML private ImageView meetingImageButton;
@@ -52,6 +53,22 @@ public class MainMenuController implements Initializable {
             scene.getStylesheets().add(styleSheet);
             GuestlistModeController controller = loader.<GuestlistModeController>getController();
             controller.setStyleSheet(styleSheet);
+            MainMenu.pushAndSetScene(scene);
+        } catch (IOException ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    @FXML
+    private void handleMASTERClickAction() {
+        try {
+            URL url = new File("src/com/palesd/gui/view_lists/DeleteLists.fxml").toURI().toURL();
+            FXMLLoader loader = new FXMLLoader(url);
+            Scene scene = new Scene((Pane) loader.load());
+            scene.getStylesheets().clear();
+            scene.getStylesheets().add(styleSheet);
+            DeleteListsController controller = loader.<DeleteListsController>getController();
+            controller.setIdentifier("List");
             MainMenu.pushAndSetScene(scene);
         } catch (IOException ex) {
             System.out.println(ex);

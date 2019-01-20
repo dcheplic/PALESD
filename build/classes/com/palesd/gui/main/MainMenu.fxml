@@ -37,5 +37,6 @@
     <ImageView fx:id="attendanceImageButton" fitHeight="280.0" fitWidth="225.0" layoutX="288.0" layoutY="90.0" onMouseClicked="#handleAttendanceImageClickAction" pickOnBounds="true" preserveRatio="false" />
     <ImageView id="attendanceImageButton" fx:id="meetingImageButton" fitHeight="280.0" fitWidth="225.0" layoutX="32.0" layoutY="90.0" onMouseClicked="#handleMeetingImageClickAction" pickOnBounds="true" preserveRatio="false" />
     <ImageView id="attendanceImageButton" fx:id="guestlistImageButton" fitHeight="280.0" fitWidth="225.0" layoutX="544.0" layoutY="90.0" onMouseClicked="#handleGuestlistImageClickAction" pickOnBounds="true" preserveRatio="false" />
+    <Button fx:id="MASTER" layoutX="88.0" layoutY="435.0" mnemonicParsing="false" onMouseClicked="#handleMASTERClickAction" text="MASTER" />
   </children>
 </AnchorPane>
