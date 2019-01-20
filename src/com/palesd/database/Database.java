@@ -42,8 +42,9 @@ public class Database {
         //SQL statement for creating a new table
         String sql = "CREATE TABLE IF NOT EXISTS '" + tableName + "' (\n"
                 + " id integer PRIMARY KEY,\n"
-                + " name text NOT NULL UNIQUE,\n"
-                + " titanCard text UNIQUE"
+                + " name text NOT NULL,\n"
+                + " titanCard text,"
+                + " UNIQUE(name, titanCard)"
                 + ");";
         try {
             Statement statement = connection.createStatement();
@@ -110,6 +111,20 @@ public class Database {
     // Select all guests from table
     public static ResultSet selectAllGuests(String tableName) {
         String sql = "SELECT name, titanCard FROM '" + tableName + "'";
+        ResultSet resultSet = null;
+
+        try {
+            Statement statement = connection.createStatement();
+            resultSet = statement.executeQuery(sql);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return resultSet;
+    }
+    
+    // Select all guests from table, but sorted
+    public static ResultSet selectAllGuestsSorted(String tableName) {
+        String sql = "SELECT name, titanCard FROM '" + tableName + "' ORDER BY name";
         ResultSet resultSet = null;
 
         try {

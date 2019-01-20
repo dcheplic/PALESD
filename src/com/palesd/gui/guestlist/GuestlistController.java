@@ -60,8 +60,6 @@ public class GuestlistController implements Initializable {
             for(Guest guest : createGuestList("Master List")) {
                 if(fixedNum.equals(guest.getNumber()))
                     addGuestHelperSwipe(onList, eventName, guest.getName(), guest.getNumber());
-                else
-                    status.setText("NOT ON LIST");
             }
                         
         
@@ -130,7 +128,7 @@ public class GuestlistController implements Initializable {
     private List<String> createNameList(String eventName) {
         List<String> guestListLoc = new ArrayList();
         try {
-            ResultSet rs = Database.selectAllGuests(eventName);
+            ResultSet rs = Database.selectAllGuestsSorted(eventName);
             while(rs.next()) {
                 guestListLoc.add(rs.getString("name"));
             }

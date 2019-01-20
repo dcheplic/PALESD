@@ -73,8 +73,6 @@ public class AttendanceController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        //Database.createTable("Master List");
-        //Database.deleteTable("Master List");
         nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         numberCol.setCellValueFactory(new PropertyValueFactory<>("number"));
     }

@@ -72,7 +72,7 @@ public class EventStartController implements Initializable {
         if (!eventNameField.getText().equals("")) {
             try {
                 Database.createTable(eventNameField.getText() + identifier);
-
+                //Database.createTable("Master List");
                 URL url = new File("src/com/palesd/gui/attendance/Attendance.fxml").toURI().toURL();
                 FXMLLoader loader = new FXMLLoader(url);
                 Scene scene = new Scene((Pane) loader.load());

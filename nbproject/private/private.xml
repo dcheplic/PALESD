@@ -5,6 +5,8 @@
         <group>
             <file>file:/C:/Users/Devin/Documents/NetBeansProjects/PALESD/src/com/palesd/gui/view_lists/DeleteListsController.java</file>
             <file>file:/C:/Users/Devin/Documents/NetBeansProjects/PALESD/src/com/palesd/gui/attendance/AttendanceController.java</file>
+            <file>file:/C:/Users/Devin/Documents/NetBeansProjects/PALESD/src/com/palesd/database/Database.java</file>
+            <file>file:/C:/Users/Devin/Documents/NetBeansProjects/PALESD/src/com/palesd/gui/event_start/EventStartController.java</file>
             <file>file:/C:/Users/Devin/Documents/NetBeansProjects/PALESD/src/com/palesd/gui/guestlist/GuestlistController.java</file>
             <file>file:/C:/Users/Devin/Documents/NetBeansProjects/PALESD/src/com/palesd/gui/main/MainMenuController.java</file>
         </group>
