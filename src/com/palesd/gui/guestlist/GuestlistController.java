@@ -18,12 +18,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.paint.Color;
 
 /**
  * FXML Controller class
@@ -34,9 +36,11 @@ public class GuestlistController implements Initializable {
     
     @FXML private Button addGuestButton;
     @FXML private Button exitButton;
+    @FXML private ComboBox<String> sorter;
     @FXML private Label status;
     @FXML private ListView guestList;
-    @FXML private TableColumn nameCol;
+    @FXML private TableColumn firstNameCol;
+    @FXML private TableColumn lastNameCol;
     @FXML private TableColumn numberCol;
     @FXML private TableView<Guest> attendanceTable;
     @FXML private TextField cardField;
@@ -49,7 +53,7 @@ public class GuestlistController implements Initializable {
     private void handleAddGuestButtonAction() {
         boolean onList = false;
         for(Guest guest : attendanceTable.getItems())
-            if(guest.getName().equals(nameField.getText()))
+            if(guest.getFirstName().equals(nameField.getText().split(" ")[0]) && guest.getLastName().equals(nameField.getText().split(" ")[1]))
                 onList = true;
         String fixedNum = cardField.getText();
         if (cardField.getText().contains(";000") && (cardField.getText().endsWith("?") || cardField.getText().endsWith("?+E?")))
@@ -59,7 +63,7 @@ public class GuestlistController implements Initializable {
         else if(nameField.getText().trim().isEmpty())
             for(Guest guest : createGuestList("Master List")) {
                 if(fixedNum.equals(guest.getNumber()))
-                    addGuestHelperSwipe(onList, eventName, guest.getName(), guest.getNumber());
+                    addGuestHelperSwipe(onList, eventName, guest.getFirstName(), guest.getLastName(), guest.getNumber());
             }
                         
         
@@ -74,6 +78,16 @@ public class GuestlistController implements Initializable {
     }
     
     @FXML
+    private void handleSortSelection() {
+        if(sorter.getValue().equals("First In"))
+            guestList.getItems().setAll(createNameList(guestListName));
+        if(sorter.getValue().equals("First Name"))
+            guestList.getItems().setAll(sortNameList(guestListName, "firstName"));
+        if(sorter.getValue().equals("Last Name"))
+            guestList.getItems().setAll(sortNameList(guestListName, "lastName"));
+    }
+    
+    @FXML
     private void onEnter(ActionEvent ae) {
         handleAddGuestButtonAction();
     }
@@ -85,30 +99,37 @@ public class GuestlistController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        firstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        lastNameCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         numberCol.setCellValueFactory(new PropertyValueFactory<>("number"));
-        status.setText(guestListName);
+        sorter.getItems().setAll("First In", "First Name", "Last Name");
     }
     
     private void addGuestHelperNoSwipe(String eventName, boolean onList, String fixedNum) {
         if(!guestList.getItems().contains(nameField.getText())) {
             status.setText("NOT ON LIST");
+            status.setTextFill(Color.RED);
         } else if(onList) {
             status.setText("ALREADY SIGNED IN");
+            status.setTextFill(Color.BLACK);
         } else {
-            Database.insert(eventName, nameField.getText(), fixedNum);
+            Database.insert(eventName, nameField.getText().split(" ")[0], nameField.getText().split(" ")[1], fixedNum);
             status.setText("ON LIST");
+            status.setTextFill(Color.GREEN);
         }
     }
     
-    private void addGuestHelperSwipe(boolean onList, String eventName, String name, String cardNum) {
-        if(!guestList.getItems().contains(name)) {
+    private void addGuestHelperSwipe(boolean onList, String eventName, String firstName, String lastName, String cardNum) {
+        if(!guestList.getItems().contains(firstName + " " + lastName)) {
             status.setText("NOT ON LIST");
+            status.setTextFill(Color.RED);
         } else if(onList) {
             status.setText("ALREADY SIGNED IN");
+            status.setTextFill(Color.BLACK);
         } else {
-            Database.insert(eventName, name, cardNum);
+            Database.insert(eventName, firstName, lastName, cardNum);
             status.setText("ON LIST");
+            status.setTextFill(Color.GREEN);
         }
     }
     
@@ -117,7 +138,7 @@ public class GuestlistController implements Initializable {
         try {
             ResultSet rs = Database.selectAllGuests(eventName);
             while(rs.next()) {
-                Guest guest = new Guest(rs.getString("name"), rs.getString("titanCard"));
+                Guest guest = new Guest(rs.getString("firstName"), rs.getString("lastName"), rs.getString("titanCard"));
                 guestListLoc.add(guest);
             }
         } catch (SQLException ex) {
@@ -128,9 +149,9 @@ public class GuestlistController implements Initializable {
     private List<String> createNameList(String eventName) {
         List<String> guestListLoc = new ArrayList();
         try {
-            ResultSet rs = Database.selectAllGuestsSorted(eventName);
+            ResultSet rs = Database.selectAllGuests(eventName);
             while(rs.next()) {
-                guestListLoc.add(rs.getString("name"));
+                guestListLoc.add(rs.getString("firstName") + " " + rs.getString("lastName"));
             }
         } catch (SQLException ex) {
         }
@@ -143,6 +164,19 @@ public class GuestlistController implements Initializable {
     
     public void setGuestlistName(String guestListName) {
         guestList.getItems().setAll(createNameList(guestListName));
+        this.guestListName = guestListName;
+    }
+    
+    private List<String> sortNameList(String eventName, String sort) {
+        List<String> guestListLoc = new ArrayList();
+        try {
+            ResultSet rs = Database.selectAllGuestsSorted(eventName, sort);
+            while(rs.next()) {
+                guestListLoc.add(rs.getString("firstName") + " " + rs.getString("lastName"));
+            }
+        } catch (SQLException ex) {
+        }
+        return guestListLoc;
     }
     
 }

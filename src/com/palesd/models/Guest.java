@@ -1,16 +1,19 @@
 package com.palesd.models;
 
 public class Guest {
-    private String name;
+    private String firstName;
+    private String lastName;
     private String number;
 
     public Guest() {
-        name = "";
+        firstName = "";
+        lastName = "";
         number = "";
     }
 
-    public Guest(String name, String number) {
-        this.name = name;
+    public Guest(String firstName, String lastName, String number) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.number = number;
     }
 
@@ -18,16 +21,23 @@ public class Guest {
         return number;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
     }
 
     public void setNumber(String number) {
         this.number = number;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
-    
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 }

@@ -5,6 +5,8 @@
  */
 package com.palesd.gui.main;
 
+import com.palesd.gui.meeting.AddClubController;
+import com.palesd.gui.meeting.TakeAttendanceStartController;
 import com.palesd.gui.meeting.ViewClubListsController;
 import java.io.File;
 import java.io.IOException;
@@ -35,17 +37,24 @@ public class MeetingModeController implements Initializable {
     @FXML private Button viewClubListsButton;
     @FXML private TextArea buttonDescriptionTextArea;
     
-    String styleSheet;
+    private String identifier;
+    private String styleSheet;
     
     @FXML
     private void handleAddClubButtonAction() {
         try {
             URL url = new File("src/com/palesd/gui/meeting/AddClub.fxml").toURI().toURL();
             FXMLLoader loader = new FXMLLoader(url);
+            Stage stage = new Stage(StageStyle.DECORATED);
+            stage.setTitle("AddClub");
             Scene scene = new Scene((Pane) loader.load());
             scene.getStylesheets().clear();
             scene.getStylesheets().add(styleSheet);
-            MainMenu.pushAndSetScene(scene);
+            stage.setScene(scene);
+            AddClubController controller = loader.<AddClubController>getController();
+            controller.setIdentifier("_clu");
+            controller.setStyleSheet(styleSheet);
+            stage.show();
         } catch (IOException ex) {
         }
     }
@@ -112,10 +121,13 @@ public class MeetingModeController implements Initializable {
             URL url = new File("src/com/palesd/gui/meeting/TakeAttendanceStart.fxml").toURI().toURL();
             FXMLLoader loader = new FXMLLoader(url);
             Stage stage = new Stage(StageStyle.DECORATED);
+            stage.setTitle("Attendance Start");
             Scene scene = new Scene((Pane) loader.load());
             scene.getStylesheets().clear();
             scene.getStylesheets().add(styleSheet);
             stage.setScene(scene);
+            TakeAttendanceStartController controller = loader.<TakeAttendanceStartController>getController();
+            controller.setStyleSheet(styleSheet);
             stage.show();
         } catch (IOException ex) {
         }
@@ -154,6 +166,10 @@ public class MeetingModeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
+    }
+
+    public void setIdentifier(String identifier) {
+        this.identifier = identifier;
     }
 
     public void setStyleSheet(String styleSheet) {

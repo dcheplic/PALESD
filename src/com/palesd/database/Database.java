@@ -42,9 +42,10 @@ public class Database {
         //SQL statement for creating a new table
         String sql = "CREATE TABLE IF NOT EXISTS '" + tableName + "' (\n"
                 + " id integer PRIMARY KEY,\n"
-                + " name text NOT NULL,\n"
+                + " firstName text NOT NULL,\n"
+                + " lastName text NOT NULL,\n"
                 + " titanCard text,"
-                + " UNIQUE(name, titanCard)"
+                + " UNIQUE(firstName, lastName, titanCard)"
                 + ");";
         try {
             Statement statement = connection.createStatement();
@@ -58,7 +59,7 @@ public class Database {
     // Delete a row in a table
     public static void deleteRow(String tableName, String name) {
         //SQL statement for deleting a row
-        String sql = "DELETE FROM '" + tableName + "' WHERE name LIKE '%" + name + "%'";
+        String sql = "DELETE FROM '" + tableName + "' WHERE firstName LIKE '%" + name + "%'";
         try {
             Statement statement = connection.createStatement();
             statement.executeQuery(sql);
@@ -82,13 +83,14 @@ public class Database {
     }
 
     // Insert into table
-    public static void insert(String tableName, String name, String id) {
-        String sql = "INSERT INTO '" + tableName + "' (name, titanCard) VALUES (?,?)";
+    public static void insert(String tableName, String firstName, String lastName, String titanCard) {
+        String sql = "INSERT INTO '" + tableName + "' (firstName, lastName, titanCard) VALUES (?,?,?)";
 
         try {
             PreparedStatement pstmt = connection.prepareStatement(sql);
-            pstmt.setString(1, name);
-            pstmt.setString(2, id);
+            pstmt.setString(1, firstName);
+            pstmt.setString(2, lastName);
+            pstmt.setString(3, titanCard);
             pstmt.executeUpdate();
             System.out.println("Insert successful.");
         } catch (SQLException e) {
@@ -110,7 +112,7 @@ public class Database {
 
     // Select all guests from table
     public static ResultSet selectAllGuests(String tableName) {
-        String sql = "SELECT name, titanCard FROM '" + tableName + "'";
+        String sql = "SELECT firstName, lastName, titanCard FROM '" + tableName + "'";
         ResultSet resultSet = null;
 
         try {
@@ -123,8 +125,8 @@ public class Database {
     }
     
     // Select all guests from table, but sorted
-    public static ResultSet selectAllGuestsSorted(String tableName) {
-        String sql = "SELECT name, titanCard FROM '" + tableName + "' ORDER BY name";
+    public static ResultSet selectAllGuestsSorted(String tableName, String sorter) {
+        String sql = "SELECT firstName, lastName, titanCard FROM '" + tableName + "' ORDER BY " + sorter + " ASC";
         ResultSet resultSet = null;
 
         try {

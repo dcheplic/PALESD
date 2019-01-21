@@ -17,8 +17,9 @@
     </Label>
     <TableView id="eventGuests" fx:id="eventGuestTable" layoutX="400.0" layoutY="14.0" prefHeight="452.0" prefWidth="386.0">
       <columns>
-        <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="210.0" resizable="false" sortable="true" text="Name" fx:id="nameCol" />
-        <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="175.0" resizable="false" sortable="true" text="Number" fx:id="numberCol" />
+        <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="135.0" resizable="false" sortable="true" text="First Name" fx:id="firstNameCol" />
+        <TableColumn editable="false" maxWidth="5000.0" minWidth="10.0" prefWidth="132.0" resizable="false" sortable="true" text="Last Name" fx:id="lastNameCol" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="118.0" text="Number" fx:id="numberCol" />
       </columns>
     </TableView>
     <Button fx:id="deleteButton" layoutX="284.0" layoutY="409.0" mnemonicParsing="false" onMouseClicked="#handleDeleteButtonAction" text="Delete">

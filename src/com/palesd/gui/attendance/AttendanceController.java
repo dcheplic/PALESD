@@ -22,7 +22,8 @@ public class AttendanceController implements Initializable {
 
     @FXML private Button addGuestButton;
     @FXML private Button exitButton;
-    @FXML private TableColumn<Guest, String> nameCol;
+    @FXML private TableColumn<Guest, String> firstNameCol;
+    @FXML private TableColumn<Guest, String> lastNameCol;
     @FXML private TableColumn<Guest, String> numberCol;
     @FXML private TableView<Guest> attendanceTable;
     @FXML private TextField cardField;
@@ -36,12 +37,12 @@ public class AttendanceController implements Initializable {
         if (cardField.getText().contains(";000") && (cardField.getText().endsWith("?") || cardField.getText().endsWith("?+E?")))
             fixedNum = fixedNum.substring(4,10);
         if(!nameField.getText().trim().isEmpty() && !cardField.getText().trim().isEmpty()) {
-            Database.insert(eventName, nameField.getText(), fixedNum);
-            Database.insert("Master List", nameField.getText(), fixedNum);
+            Database.insert(eventName, nameField.getText().split(" ")[0], nameField.getText().split(" ")[1], fixedNum);
+            Database.insert("Master List", nameField.getText().split(" ")[0], nameField.getText().split(" ")[1], fixedNum);
         } else if(nameField.getText().trim().isEmpty())
             for(Guest guest : createGuestList("Master List"))
                 if(fixedNum.equals(guest.getNumber()))
-                    Database.insert(eventName, guest.getName(), guest.getNumber());
+                    Database.insert(eventName, guest.getFirstName(), guest.getLastName(), guest.getNumber());
         
         attendanceTable.getItems().setAll(createGuestList(eventName));
         nameField.clear();
@@ -63,7 +64,7 @@ public class AttendanceController implements Initializable {
         try {
             ResultSet rs = Database.selectAllGuests(eventName);
             while(rs.next()) {
-                Guest guest = new Guest(rs.getString("name"), rs.getString("titanCard"));
+                Guest guest = new Guest(rs.getString("firstName"), rs.getString("lastName"), rs.getString("titanCard"));
                 guestList.add(guest);
             }
         } catch (SQLException ex) {
@@ -73,7 +74,8 @@ public class AttendanceController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+        firstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        lastNameCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         numberCol.setCellValueFactory(new PropertyValueFactory<>("number"));
     }
     

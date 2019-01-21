@@ -9,11 +9,12 @@
 
 <AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.palesd.gui.meeting.EditClubController">
   <children>
-    <ListView layoutX="391.0" layoutY="44.0" prefHeight="136.0" prefWidth="395.0" />
-    <TableView layoutX="391.0" layoutY="218.0" prefHeight="248.0" prefWidth="395.0">
+    <ListView id="clubListView" fx:id="clubList" layoutX="391.0" layoutY="44.0" onMouseClicked="#handleSelectedClubAction" prefHeight="136.0" prefWidth="395.0" />
+    <TableView fx:id="clubMemberTable" layoutX="391.0" layoutY="218.0" onMouseClicked="#handleSelectedMemberAction" prefHeight="248.0" prefWidth="395.0">
       <columns>
-        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="230.0" text="Name" />
-        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="164.0" text="Number" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="135.0" text="First Name" fx:id="firstNameCol" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="136.0" text="Last Name" fx:id="lastNameCol" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="124.0" text="Number" fx:id="numberCol" />
       </columns>
     </TableView>
     <Label layoutX="391.0" layoutY="186.0" text="Members">
@@ -23,18 +24,18 @@
     </Label>
     <Label font="$x1" layoutX="391.0" layoutY="12.0" text="Clubs" />
     <Label font="$x1" layoutX="14.0" layoutY="18.0" text="Add New Member" />
-    <TextField layoutX="14.0" layoutY="80.0" prefHeight="42.0" prefWidth="346.0" promptText="Macho Man Randy Savage" />
+    <TextField fx:id="nameField" layoutX="14.0" layoutY="80.0" prefHeight="42.0" prefWidth="346.0" promptText="Macho Man Randy Savage" />
     <Label layoutX="14.0" layoutY="53.0" text="Name">
       <font>
         <Font size="20.0" fx:id="x2" />
       </font>
     </Label>
     <Label font="$x2" layoutX="14.0" layoutY="123.0" text="Number" />
-    <TextField layoutX="14.0" layoutY="150.0" prefHeight="42.0" prefWidth="346.0" promptText="123456" />
+    <TextField id="cardNumberField" fx:id="cardField" layoutX="14.0" layoutY="150.0" onAction="#onEnter" prefHeight="42.0" prefWidth="346.0" promptText="123456" />
     <Label font="$x1" layoutX="14.0" layoutY="264.0" text="Delete Existing Member" />
-    <TextField editable="false" layoutX="14.0" layoutY="296.0" prefHeight="42.0" prefWidth="346.0" promptText="Select member from member list" />
-    <Button font="$x2" layoutX="14.0" layoutY="200.0" mnemonicParsing="false" text="Add Member" />
-    <Button font="$x2" layoutX="14.0" layoutY="347.0" mnemonicParsing="false" text="Delete Member" />
+    <TextField fx:id="delNameField" editable="false" layoutX="14.0" layoutY="296.0" prefHeight="42.0" prefWidth="346.0" promptText="Select member from member list" />
+    <Button fx:id="addMemberButton" font="$x2" layoutX="14.0" layoutY="200.0" mnemonicParsing="false" onMouseClicked="#handleAddMemberButtonAction" text="Add Member" />
+    <Button fx:id="deleteMemberButton" font="$x2" layoutX="14.0" layoutY="347.0" mnemonicParsing="false" onMouseClicked="#handleDeleteMemberButtonAction" text="Delete Member" />
     <Button fx:id="exitButton" font="$x2" layoutX="14.0" layoutY="424.0" mnemonicParsing="false" onMouseClicked="#handleExitButtonAction" text="Exit" />
   </children>
 </AnchorPane>

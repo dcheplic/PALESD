@@ -40,7 +40,7 @@ public class CreateGuestlistController implements Initializable {
     @FXML
     private void handleAddGuestButtonAction() {
         if(!nameField.getText().trim().isEmpty())
-            Database.insert(eventName, nameField.getText(), "");
+            Database.insert(eventName, nameField.getText().split(" ")[0], nameField.getText().split(" ")[1], "");
         
         guestList.getItems().setAll(createNameList(eventName));
         nameField.clear();
@@ -82,7 +82,7 @@ public class CreateGuestlistController implements Initializable {
         try {
             ResultSet rs = Database.selectAllGuests(eventName);
             while(rs.next()) {
-                guestListLoc.add(rs.getString("name"));
+                guestListLoc.add(rs.getString("firstName") + " " + rs.getString("lastName"));
             }
         } catch (SQLException ex) {
         }
