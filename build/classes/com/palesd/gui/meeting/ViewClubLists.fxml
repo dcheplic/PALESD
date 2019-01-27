@@ -22,6 +22,6 @@
     </Button>
     <Button id="" fx:id="exitButton" font="$x1" layoutX="11.0" layoutY="409.0" mnemonicParsing="false" onMouseClicked="#handleExitButtonAction" text="Exit" />
     <Label font="$x2" layoutX="424.0" layoutY="14.0" text="Meetings" />
-    <ListView fx:id="meetingList" layoutX="424.0" layoutY="46.0" prefHeight="335.0" prefWidth="362.0" />
+    <ListView fx:id="meetingList" layoutX="424.0" layoutY="46.0" onMouseClicked="#handleSelectedMeetingAction" prefHeight="335.0" prefWidth="362.0" />
   </children>
 </AnchorPane>

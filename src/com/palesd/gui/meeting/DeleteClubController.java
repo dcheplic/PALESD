@@ -42,6 +42,7 @@ public class DeleteClubController implements Initializable {
     private void handleDeleteButtonAction() {
             Database.deleteTable(selectedClub);
             clubList.getItems().setAll(createClubList("_clu%"));
+            clubMemberTable.getItems().clear();
     }
     
     @FXML
