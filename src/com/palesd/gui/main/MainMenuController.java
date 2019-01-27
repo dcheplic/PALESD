@@ -62,13 +62,12 @@ public class MainMenuController implements Initializable {
     @FXML
     private void handleMASTERClickAction() {
         try {
-            URL url = new File("src/com/palesd/gui/view_lists/DeleteLists.fxml").toURI().toURL();
+            URL url = new File("src/com/palesd/gui/main/MasterList.fxml").toURI().toURL();
             FXMLLoader loader = new FXMLLoader(url);
             Scene scene = new Scene((Pane) loader.load());
             scene.getStylesheets().clear();
             scene.getStylesheets().add(styleSheet);
-            DeleteListsController controller = loader.<DeleteListsController>getController();
-            controller.setIdentifier("List");
+            MasterListController controller = loader.<MasterListController>getController();
             MainMenu.pushAndSetScene(scene);
         } catch (IOException ex) {
             System.out.println(ex);
