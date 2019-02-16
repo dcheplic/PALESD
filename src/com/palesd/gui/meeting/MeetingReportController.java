@@ -29,6 +29,7 @@ public class MeetingReportController implements Initializable {
     @FXML private TableColumn firstNameCol;
     @FXML private TableColumn lastNameCol;
     @FXML private TableColumn numberCol;
+    @FXML private TableColumn timeCol;
     @FXML private TableView attendanceTable;
     
     @FXML
@@ -47,6 +48,7 @@ public class MeetingReportController implements Initializable {
         firstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         lastNameCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         numberCol.setCellValueFactory(new PropertyValueFactory<>("number"));
+        timeCol.setCellValueFactory(new PropertyValueFactory<>("time"));
     }
     
     private List<Guest> createMemberList(String eventName) {
@@ -54,7 +56,7 @@ public class MeetingReportController implements Initializable {
         try {
             ResultSet rs = Database.selectAllGuests(eventName);
             while(rs.next()) {
-                Guest guest = new Guest(rs.getString("firstName"), rs.getString("lastName"), rs.getString("titanCard"));
+                Guest guest = new Guest(rs.getString("firstName"), rs.getString("lastName"), rs.getInt("titanCard"), rs.getString("time"));
                 guestList.add(guest);
             }
         } catch (SQLException ex) {

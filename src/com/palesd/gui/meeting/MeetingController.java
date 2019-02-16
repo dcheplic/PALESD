@@ -6,7 +6,10 @@ import com.palesd.models.Guest;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -24,11 +27,14 @@ public class MeetingController implements Initializable {
     @FXML private TableColumn firstNameCol;
     @FXML private TableColumn lastNameCol;
     @FXML private TableColumn numberCol;
+    @FXML private TableColumn timeCol;
     @FXML private TableView<Guest> attendanceTable;
     @FXML private TextField cardField;
     
     private String clubName;
     private String clubTableName;
+    
+    private final DateFormat sdf = new SimpleDateFormat("hh:mm a");
     
     @FXML
     private void handleExitButtonAction() {
@@ -37,13 +43,14 @@ public class MeetingController implements Initializable {
     
     @FXML
     private void onEnter(ActionEvent ae) {
+        Date date = new Date();
+        String time = sdf.format(date);
         String fixedNum = cardField.getText();
         if (cardField.getText().contains(";000") && (cardField.getText().endsWith("?") || cardField.getText().endsWith("?+E?")))
             fixedNum = fixedNum.substring(4,10);
         for(Guest guest : createGuestList(clubName)) {
-            if(guest.getNumber().equals(fixedNum)) {
-                Database.insert(clubTableName, guest.getFirstName(), guest.getLastName(), fixedNum);
-                Database.insert("Master List", guest.getFirstName(), guest.getLastName(), fixedNum);
+            if(guest.getNumber() == Integer.parseInt(fixedNum)) {
+                Database.insert(clubTableName, guest.getFirstName(), guest.getLastName(), Integer.parseInt(fixedNum), time);
                 break;
             }
         }
@@ -62,6 +69,7 @@ public class MeetingController implements Initializable {
         firstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         lastNameCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         numberCol.setCellValueFactory(new PropertyValueFactory<>("number"));
+        timeCol.setCellValueFactory(new PropertyValueFactory<>("number"));
     }
     
     private List<Guest> createGuestList(String eventName) {
@@ -69,7 +77,7 @@ public class MeetingController implements Initializable {
         try {
             ResultSet rs = Database.selectAllGuests(eventName);
             while(rs.next()) {
-                Guest guest = new Guest(rs.getString("firstName"), rs.getString("lastName"), rs.getString("titanCard"));
+                Guest guest = new Guest(rs.getString("firstName"), rs.getString("lastName"), rs.getInt("titanCard"), rs.getString("time"));
                 guestList.add(guest);
             }
         } catch (SQLException ex) {

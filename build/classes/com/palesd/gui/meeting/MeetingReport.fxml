@@ -11,9 +11,10 @@
   <children>
     <TableView fx:id="attendanceTable" layoutX="16.0" layoutY="48.0" prefHeight="370.0" prefWidth="770.0">
       <columns>
-        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="276.0" text="First Name" fx:id="firstNameCol" />
-        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="276.0" text="Last Name" fx:id="lastNameCol" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="182.0" text="First Name" fx:id="firstNameCol" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="196.0" text="Last Name" fx:id="lastNameCol" />
         <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="216.0" text="Number" fx:id="numberCol" />
+        <TableColumn maxWidth="5000.0" minWidth="10.0" prefWidth="177.0" text="Time" fx:id="timeCol" />
       </columns>
     </TableView>
     <Button fx:id="exitButton" layoutX="16.0" layoutY="431.0" mnemonicParsing="false" onMouseClicked="#handleExitButtonAction" text="Exit">

@@ -35,6 +35,7 @@ public class DeleteListsController implements Initializable {
     @FXML private TableColumn<Guest, String> firstNameCol;
     @FXML private TableColumn<Guest, String> lastNameCol;
     @FXML private TableColumn<Guest, String> numberCol;
+    @FXML private TableColumn<Guest, String> timeCol;
     @FXML private TableView eventGuestTable;
     
     private String identifier;
@@ -72,6 +73,7 @@ public class DeleteListsController implements Initializable {
         firstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         lastNameCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         numberCol.setCellValueFactory(new PropertyValueFactory<>("number"));
+        timeCol.setCellValueFactory(new PropertyValueFactory<>("time"));
         //eventList.getItems().setAll(createEventList());
     }
     
@@ -92,7 +94,7 @@ public class DeleteListsController implements Initializable {
         try {
             ResultSet rs = Database.selectAllGuests(eventName);
             while(rs.next()) {
-                Guest guest = new Guest(rs.getString("firstName"), rs.getString("lastName"), rs.getString("titanCard"));
+                Guest guest = new Guest(rs.getString("firstName"), rs.getString("lastName"), rs.getInt("titanCard"), rs.getString("time"));
                 guestList.add(guest);
             }
         } catch (SQLException ex) {

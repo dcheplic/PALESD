@@ -87,7 +87,7 @@ public class DeleteClubController implements Initializable {
         try {
             ResultSet rs = Database.selectAllGuests(eventName);
             while(rs.next()) {
-                Guest guest = new Guest(rs.getString("firstName"), rs.getString("lastName"), rs.getString("titanCard"));
+                Guest guest = new Guest(rs.getString("firstName"), rs.getString("lastName"), rs.getInt("titanCard"), "");
                 guestList.add(guest);
             }
         } catch (SQLException ex) {

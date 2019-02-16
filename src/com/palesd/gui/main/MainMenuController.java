@@ -1,7 +1,6 @@
 package com.palesd.gui.main;
 
 import com.palesd.database.Database;
-import com.palesd.gui.view_lists.DeleteListsController;
 import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -16,6 +15,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class MainMenuController implements Initializable {
 
@@ -62,13 +63,17 @@ public class MainMenuController implements Initializable {
     @FXML
     private void handleMASTERClickAction() {
         try {
-            URL url = new File("src/com/palesd/gui/main/MasterList.fxml").toURI().toURL();
+            URL url = new File("src/com/palesd/gui/main/MasterListStart.fxml").toURI().toURL();
             FXMLLoader loader = new FXMLLoader(url);
+            Stage stage = new Stage(StageStyle.DECORATED);
+            stage.setTitle("Admin Access");
             Scene scene = new Scene((Pane) loader.load());
             scene.getStylesheets().clear();
             scene.getStylesheets().add(styleSheet);
-            MasterListController controller = loader.<MasterListController>getController();
-            MainMenu.pushAndSetScene(scene);
+            MasterListStartController controller = loader.<MasterListStartController>getController();
+            controller.setStyleSheet(styleSheet);
+            stage.setScene(scene);
+            stage.show();
         } catch (IOException ex) {
             System.out.println(ex);
         }

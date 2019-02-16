@@ -52,8 +52,8 @@ public class EditClubController implements Initializable {
         if (cardField.getText().contains(";000") && (cardField.getText().endsWith("?") || cardField.getText().endsWith("?+E?")))
             fixedNum = fixedNum.substring(4,10);
         if(!nameField.getText().trim().isEmpty() && !cardField.getText().trim().isEmpty()) {
-            Database.insert(clubName, nameField.getText().split(" ")[0], nameField.getText().split(" ")[1], fixedNum);
-            Database.insert("Master List", nameField.getText().split(" ")[0], nameField.getText().split(" ")[1], fixedNum);
+            Database.insert(clubName, nameField.getText().split(" ")[0], nameField.getText().split(" ")[1], Integer.parseInt(fixedNum), "");
+            Database.insert("Master List", nameField.getText().split(" ")[0], nameField.getText().split(" ")[1], Integer.parseInt(fixedNum), "");
         }
         
         clubMemberTable.getItems().setAll(createMemberList(clubName));
@@ -63,7 +63,7 @@ public class EditClubController implements Initializable {
     
     @FXML
     private void handleDeleteMemberButtonAction() {
-        Database.deleteRow(clubName, clubMember.getFirstName());
+        Database.deleteRow(clubName, clubMember.getNumber());
         clubMemberTable.getItems().setAll(createMemberList(clubName));
         delNameField.clear();
     }
@@ -120,7 +120,7 @@ public class EditClubController implements Initializable {
         try {
             ResultSet rs = Database.selectAllGuests(clubName);
             while(rs.next()) {
-                Guest guest = new Guest(rs.getString("firstName"), rs.getString("lastName"), rs.getString("titanCard"));
+                Guest guest = new Guest(rs.getString("firstName"), rs.getString("lastName"), rs.getInt("titanCard"), "");
                 guestListLoc.add(guest);
             }
         } catch (SQLException ex) {

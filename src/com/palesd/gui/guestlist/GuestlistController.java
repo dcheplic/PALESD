@@ -11,7 +11,10 @@ import com.palesd.models.Guest;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -42,12 +45,15 @@ public class GuestlistController implements Initializable {
     @FXML private TableColumn firstNameCol;
     @FXML private TableColumn lastNameCol;
     @FXML private TableColumn numberCol;
+    @FXML private TableColumn timeCol;
     @FXML private TableView<Guest> attendanceTable;
     @FXML private TextField cardField;
     @FXML private TextField nameField;
     
     private String eventName;
     private String guestListName;
+    
+    private final DateFormat sdf = new SimpleDateFormat("hh:mm a");
     
     @FXML
     private void handleAddGuestButtonAction() {
@@ -59,14 +65,13 @@ public class GuestlistController implements Initializable {
         if (cardField.getText().contains(";000") && (cardField.getText().endsWith("?") || cardField.getText().endsWith("?+E?")))
             fixedNum = fixedNum.substring(4,10);
         if(!nameField.getText().trim().isEmpty() && !cardField.getText().trim().isEmpty())
-            addGuestHelperNoSwipe(eventName, onList, fixedNum);
+            addGuestHelperNoSwipe(eventName, onList, Integer.parseInt(fixedNum));
         else if(nameField.getText().trim().isEmpty())
             for(Guest guest : createGuestList("Master List")) {
-                if(fixedNum.equals(guest.getNumber()))
+                if(Integer.parseInt(fixedNum) == guest.getNumber())
                     addGuestHelperSwipe(onList, eventName, guest.getFirstName(), guest.getLastName(), guest.getNumber());
             }
                         
-        
         attendanceTable.getItems().setAll(createGuestList(eventName));
         nameField.clear();
         cardField.clear();
@@ -85,6 +90,8 @@ public class GuestlistController implements Initializable {
             guestList.getItems().setAll(sortNameList(guestListName, "firstName"));
         if(sorter.getValue().equals("Last Name"))
             guestList.getItems().setAll(sortNameList(guestListName, "lastName"));
+        if(sorter.getValue().equals("Time"))
+            guestList.getItems().setAll(sortNameList(guestListName, "time"));
     }
     
     @FXML
@@ -102,10 +109,11 @@ public class GuestlistController implements Initializable {
         firstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         lastNameCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         numberCol.setCellValueFactory(new PropertyValueFactory<>("number"));
-        sorter.getItems().setAll("First In", "First Name", "Last Name");
+        timeCol.setCellValueFactory(new PropertyValueFactory<>("time"));
+        sorter.getItems().setAll("First In", "First Name", "Last Name", "Time In");
     }
     
-    private void addGuestHelperNoSwipe(String eventName, boolean onList, String fixedNum) {
+    private void addGuestHelperNoSwipe(String eventName, boolean onList, int fixedNum) {
         if(!guestList.getItems().contains(nameField.getText())) {
             status.setText("NOT ON LIST");
             status.setTextFill(Color.RED);
@@ -113,13 +121,16 @@ public class GuestlistController implements Initializable {
             status.setText("ALREADY SIGNED IN");
             status.setTextFill(Color.BLACK);
         } else {
-            Database.insert(eventName, nameField.getText().split(" ")[0], nameField.getText().split(" ")[1], fixedNum);
+            Date date = new Date();
+            String time = sdf.format(date);
+            Database.insert(eventName, nameField.getText().split(" ")[0], nameField.getText().split(" ")[1], fixedNum, time);
+            Database.insert("Master List", nameField.getText().split(" ")[0], nameField.getText().split(" ")[1], fixedNum, "");
             status.setText("ON LIST");
             status.setTextFill(Color.GREEN);
         }
     }
     
-    private void addGuestHelperSwipe(boolean onList, String eventName, String firstName, String lastName, String cardNum) {
+    private void addGuestHelperSwipe(boolean onList, String eventName, String firstName, String lastName, int cardNum) {
         if(!guestList.getItems().contains(firstName + " " + lastName)) {
             status.setText("NOT ON LIST");
             status.setTextFill(Color.RED);
@@ -127,7 +138,9 @@ public class GuestlistController implements Initializable {
             status.setText("ALREADY SIGNED IN");
             status.setTextFill(Color.BLACK);
         } else {
-            Database.insert(eventName, firstName, lastName, cardNum);
+            Date date = new Date();
+            String time = sdf.format(date);
+            Database.insert(eventName, firstName, lastName, cardNum, time);
             status.setText("ON LIST");
             status.setTextFill(Color.GREEN);
         }
@@ -138,7 +151,7 @@ public class GuestlistController implements Initializable {
         try {
             ResultSet rs = Database.selectAllGuests(eventName);
             while(rs.next()) {
-                Guest guest = new Guest(rs.getString("firstName"), rs.getString("lastName"), rs.getString("titanCard"));
+                Guest guest = new Guest(rs.getString("firstName"), rs.getString("lastName"), rs.getInt("titanCard"), rs.getString("time"));
                 guestListLoc.add(guest);
             }
         } catch (SQLException ex) {

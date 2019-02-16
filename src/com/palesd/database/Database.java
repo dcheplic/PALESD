@@ -41,10 +41,10 @@ public class Database {
     public static void createTable(String tableName) {
         //SQL statement for creating a new table
         String sql = "CREATE TABLE IF NOT EXISTS '" + tableName + "' (\n"
-                + " id integer PRIMARY KEY,\n"
+                + " titanCard int PRIMARY KEY,\n"
                 + " firstName text NOT NULL,\n"
                 + " lastName text NOT NULL,\n"
-                + " titanCard text,"
+                + " time text NOT NULL,"
                 + " UNIQUE(firstName, lastName, titanCard)"
                 + ");";
         try {
@@ -57,9 +57,22 @@ public class Database {
     }
     
     // Delete a row in a table
-    public static void deleteRow(String tableName, String name) {
+    public static void deleteRow(String tableName, int card) {
         //SQL statement for deleting a row
-        String sql = "DELETE FROM '" + tableName + "' WHERE firstName LIKE '%" + name + "%'";
+        String sql = "DELETE FROM '" + tableName + "' WHERE titanCard LIKE '%" + card + "%'";
+        try {
+            Statement statement = connection.createStatement();
+            statement.executeQuery(sql);
+        } catch (SQLException e) {
+            //System.out.println(e.getMessage());
+        }
+        System.out.println("Row deletion successful.\n");
+    }
+    
+    // Delete a row in a table
+    public static void deleteGuestRow(String tableName, String firstName, String lastName) {
+        //SQL statement for deleting a row
+        String sql = "DELETE FROM '" + tableName + "' WHERE firstName LIKE '" + firstName + "' AND lastName LIKE '" + lastName + "'";
         try {
             Statement statement = connection.createStatement();
             statement.executeQuery(sql);
@@ -83,14 +96,15 @@ public class Database {
     }
 
     // Insert into table
-    public static void insert(String tableName, String firstName, String lastName, String titanCard) {
-        String sql = "INSERT INTO '" + tableName + "' (firstName, lastName, titanCard) VALUES (?,?,?)";
+    public static void insert(String tableName, String firstName, String lastName, int titanCard, String time) {
+        String sql = "INSERT INTO '" + tableName + "' (titanCard, firstName, lastName, time) VALUES (?,?,?,?)";
 
         try {
             PreparedStatement pstmt = connection.prepareStatement(sql);
-            pstmt.setString(1, firstName);
-            pstmt.setString(2, lastName);
-            pstmt.setString(3, titanCard);
+            pstmt.setInt(1, titanCard);
+            pstmt.setString(2, firstName);
+            pstmt.setString(3, lastName);
+            pstmt.setString(4, time);
             pstmt.executeUpdate();
             System.out.println("Insert successful.");
         } catch (SQLException e) {
@@ -112,7 +126,7 @@ public class Database {
 
     // Select all guests from table
     public static ResultSet selectAllGuests(String tableName) {
-        String sql = "SELECT firstName, lastName, titanCard FROM '" + tableName + "'";
+        String sql = "SELECT firstName, lastName, titanCard, time FROM '" + tableName + "'";
         ResultSet resultSet = null;
 
         try {
@@ -126,7 +140,7 @@ public class Database {
     
     // Select all guests from table, but sorted
     public static ResultSet selectAllGuestsSorted(String tableName, String sorter) {
-        String sql = "SELECT firstName, lastName, titanCard FROM '" + tableName + "' ORDER BY " + sorter + " ASC";
+        String sql = "SELECT firstName, lastName, titanCard, time FROM '" + tableName + "' ORDER BY " + sorter + " ASC";
         ResultSet resultSet = null;
 
         try {
