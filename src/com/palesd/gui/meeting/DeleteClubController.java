@@ -41,6 +41,10 @@ public class DeleteClubController implements Initializable {
     @FXML
     private void handleDeleteButtonAction() {
             Database.deleteTable(selectedClub);
+            if (!selectedClub.contains("_clumet"))
+                for(String meeting : createClubList("_clu%"))
+                    if(meeting.contains(selectedClub.substring(0, selectedClub.length()-4)))
+                        Database.deleteTable(meeting);
             clubList.getItems().setAll(createClubList("_clu%"));
             clubMemberTable.getItems().clear();
     }

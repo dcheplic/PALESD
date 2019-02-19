@@ -46,6 +46,7 @@ public class AddClubController implements Initializable {
                 scene.getStylesheets().clear();
                 scene.getStylesheets().add(styleSheet);
                 EditClubController controller = loader.<EditClubController>getController();
+                controller.setClubName(clubNameField.getText() + identifier);
                 MainMenu.pushAndSetScene(scene);
             } catch (IOException ex) {
             }

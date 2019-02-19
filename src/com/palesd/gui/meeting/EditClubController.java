@@ -128,4 +128,10 @@ public class EditClubController implements Initializable {
         return guestListLoc;
     }
 
+    public void setClubName(String clubName) {
+        this.clubName = clubName;
+        clubList.getSelectionModel().select(clubName);
+    }
+
+    
 }

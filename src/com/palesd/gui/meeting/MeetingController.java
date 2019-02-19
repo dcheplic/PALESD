@@ -69,7 +69,7 @@ public class MeetingController implements Initializable {
         firstNameCol.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         lastNameCol.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         numberCol.setCellValueFactory(new PropertyValueFactory<>("number"));
-        timeCol.setCellValueFactory(new PropertyValueFactory<>("number"));
+        timeCol.setCellValueFactory(new PropertyValueFactory<>("time"));
     }
     
     private List<Guest> createGuestList(String eventName) {

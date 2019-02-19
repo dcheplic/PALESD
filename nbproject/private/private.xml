@@ -3,14 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/devin/Documents/NetBeansProjects/PALESD/src/com/palesd/models/Guest.java</file>
-            <file>file:/C:/Users/devin/Documents/NetBeansProjects/PALESD/src/com/palesd/database/Database.java</file>
-            <file>file:/C:/Users/devin/Documents/NetBeansProjects/PALESD/src/com/palesd/gui/main/MainMenuController.java</file>
-            <file>file:/C:/Users/devin/Documents/NetBeansProjects/PALESD/src/com/palesd/gui/main/MasterListController.java</file>
-            <file>file:/C:/Users/devin/Documents/NetBeansProjects/PALESD/src/com/palesd/gui/main/MasterListStartController.java</file>
-            <file>file:/C:/Users/devin/Documents/NetBeansProjects/PALESD/src/com/palesd/gui/meeting/MeetingController.java</file>
-            <file>file:/C:/Users/devin/Documents/NetBeansProjects/PALESD/src/com/palesd/gui/guestlist/CreateGuestlistController.java</file>
-            <file>file:/C:/Users/devin/Documents/NetBeansProjects/PALESD/src/com/palesd/gui/view_lists/ViewListsController.java</file>
+            <file>file:/C:/Users/devin/OneDrive%20-%20Westminster%20College/Documents/NetBeansProjects/PALESD/src/com/palesd/gui/meeting/EditClubController.java</file>
+            <file>file:/C:/Users/devin/OneDrive%20-%20Westminster%20College/Documents/NetBeansProjects/PALESD/src/com/palesd/gui/meeting/AddClubController.java</file>
         </group>
     </open-files>
 </project-private>
