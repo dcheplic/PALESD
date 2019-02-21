@@ -7,9 +7,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="160.0" prefWidth="400.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="com.palesd.gui.event_start.EventStartController">
+<AnchorPane id="AnchorPane" prefHeight="160.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.palesd.gui.event_start.EventStartController">
   <children>
-    <TextField fx:id="eventNameField" layoutX="17.0" layoutY="56.0" onAction="#onEnter" prefHeight="39.0" prefWidth="366.0" promptText="Event Name" />
     <Label layoutX="17.0" layoutY="16.0" text="Event Name">
       <font>
         <Font size="24.0" fx:id="x1" />
@@ -21,5 +20,6 @@
       </font>
     </Button>
     <Button id="cancelButton" fx:id="exitButton" font="$x2" layoutX="17.0" layoutY="111.0" mnemonicParsing="false" onMouseClicked="#handleExitButtonAction" text="Exit" />
+    <TextField fx:id="eventNameField" layoutX="17.0" layoutY="56.0" onAction="#onEnter" prefHeight="39.0" prefWidth="366.0" promptText="Event Name" />
   </children>
 </AnchorPane>

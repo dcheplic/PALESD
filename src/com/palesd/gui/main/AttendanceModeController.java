@@ -77,7 +77,7 @@ public class AttendanceModeController implements Initializable {
         try {
             URL url = new File("src/com/palesd/gui/event_start/EventStart.fxml").toURI().toURL();
             FXMLLoader loader = new FXMLLoader(url);
-            Stage stage = new Stage(StageStyle.DECORATED);
+            Stage stage = new Stage(StageStyle.UNDECORATED);
             stage.setTitle("Event Start");
             Scene scene = new Scene((Pane) loader.load());
             scene.getStylesheets().clear();
