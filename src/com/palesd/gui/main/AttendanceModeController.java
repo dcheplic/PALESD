@@ -82,10 +82,10 @@ public class AttendanceModeController implements Initializable {
             Scene scene = new Scene((Pane) loader.load());
             scene.getStylesheets().clear();
             scene.getStylesheets().add(styleSheet);
-            stage.setScene(scene);
             EventStartController controller = loader.<EventStartController>getController();
             controller.setIdentifier("_att");
             controller.setStyleSheet(styleSheet);
+            stage.setScene(scene);
             stage.show();
         } catch (IOException ex) {
         }

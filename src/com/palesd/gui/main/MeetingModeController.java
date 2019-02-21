@@ -45,9 +45,9 @@ public class MeetingModeController implements Initializable {
             Scene scene = new Scene((Pane) loader.load());
             scene.getStylesheets().clear();
             scene.getStylesheets().add(styleSheet);
-            stage.setScene(scene);
             AddClubController controller = loader.<AddClubController>getController();
             controller.setIdentifier("_clu");
+            stage.setScene(scene);
             controller.setStyleSheet(styleSheet);
             stage.show();
         } catch (IOException ex) {
