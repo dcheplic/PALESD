@@ -156,7 +156,8 @@ public class ViewListsController implements Initializable, Printable {
         /* Draw each line that is on this page.
          * Increment 'y' position by lineHeight for each line.
          */
-        int y = 75; 
+        int y = 75;
+        g.drawString(eventList.getSelectionModel().getSelectedItem().substring(0, eventList.getSelectionModel().getSelectedItem().length()-4), 75, y);
         int start = (pageIndex == 0) ? 0 : pageBreaks[pageIndex-1];
         int end   = (pageIndex == pageBreaks.length)
                          ? textLines.length : pageBreaks[pageIndex];
