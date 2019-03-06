@@ -4,19 +4,19 @@
 
 
           event
-          Current Date and Time: 03/06/2019 12:17 PM
+          Current Date and Time: 03/06/2019 12:22 PM
 
-          Devin Cheplic             237197                    Time In: 06:00 PM   
-          Colin Campbell            239990                    Time In: 06:01 PM   
-          Sean Richards             240869                    Time In: 06:01 PM   
-          Brett Steinmiller         240841                    Time In: 06:01 PM   
-          Alec Lander               240901                    Time In: 06:01 PM   
-          Kyle Youmans              243612                    Time In: 06:01 PM   
-          Nik Guadagnino            238637                    Time In: 06:02 PM   
-          Steve Barr                243932                    Time In: 06:02 PM   
-          Zach Herndon              237528                    Time In: 06:02 PM   
-          Justin Brandt             236921                    Time In: 06:02 PM   
-          Connor Carbonneau         241645                    Time In: 06:02 PM   
-          Sam Sherlock              239146                    Time In: 06:03 PM   
-          Tim Stewart               236822                    Time In: 06:03 PM   
-          David Windsor             239163                    Time In: 07:00 PM   
+          Devin Cheplic             237197               Time In: 06:00 PM
+          Colin Campbell            239990               Time In: 06:01 PM
+          Sean Richards             240869               Time In: 06:01 PM
+          Brett Steinmiller         240841               Time In: 06:01 PM
+          Alec Lander               240901               Time In: 06:01 PM
+          Kyle Youmans              243612               Time In: 06:01 PM
+          Nik Guadagnino            238637               Time In: 06:02 PM
+          Steve Barr                243932               Time In: 06:02 PM
+          Zach Herndon              237528               Time In: 06:02 PM
+          Justin Brandt             236921               Time In: 06:02 PM
+          Connor Carbonneau         241645               Time In: 06:02 PM
+          Sam Sherlock              239146               Time In: 06:03 PM
+          Tim Stewart               236822               Time In: 06:03 PM
+          David Windsor             239163               Time In: 07:00 PM

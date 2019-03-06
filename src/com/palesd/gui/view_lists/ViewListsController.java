@@ -150,7 +150,7 @@ public class ViewListsController implements Initializable{
         if (lines == null) {
             lines = new String[eventGuestTable.getItems().size()];
             for (int i=0;i<lines.length;i++) {
-                String formatStr = "%-35s %-25s %-20s%n";
+                String formatStr = "%-35s %-20s %-10s%n";
                 lines[i]= String.format(formatStr, "          " + eventGuestTable.getItems().get(i).getFirstName() + " " + eventGuestTable.getItems().get(i).getLastName(),
                                                    eventGuestTable.getItems().get(i).getNumber(),
                                                    "Time In: " + eventGuestTable.getItems().get(i).getTime());

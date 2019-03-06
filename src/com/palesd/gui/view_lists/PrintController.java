@@ -49,13 +49,13 @@ public class PrintController implements Initializable {
         if(selectedPrinter != null){
             String path = "src/com/palesd/printable/" + eventName + ".txt";
             String[] command = { "lp", "-d", selectedPrinter, path};
+            handleExitButtonAction();
             try {
                 Process proc = new ProcessBuilder(command).start();
             } catch (IOException ex) {
                 System.out.println(ex);
             }
         }
-        handleExitButtonAction();
     }
     
     @FXML
