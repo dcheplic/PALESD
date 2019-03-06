@@ -26,6 +26,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -50,6 +53,8 @@ public class ViewListsController implements Initializable{
     private String selectedEvent;
     private String styleSheet;
     
+    private final DateFormat sdf = new SimpleDateFormat("MM/dd/yyyy hh:mm a");
+    
     @FXML
     private void handleExitButtonAction() {
         MainMenu.popAndSetScene();
@@ -57,13 +62,18 @@ public class ViewListsController implements Initializable{
     
     @FXML
     private void handlePrintButtonAction() {
+        Date date = new Date();
+        String time = sdf.format(date);
         if (selectedEvent != null) {
             PrintWriter writer = null;
             try {
                 String[] textLines = initTextLines();
                 writer = new PrintWriter("src/com/palesd/printable/" + selectedEvent + ".txt", "UTF-8");
+                writer.println("\n\n\n\n");
+                writer.println("          " + selectedEvent.substring(0, selectedEvent.length()-4));
+                writer.println("          Current Date and Time: " + time + "\n");
                 for (String textLine : textLines) {
-                    writer.println(textLine);
+                    writer.print(textLine);
                 }
                 writer.close();
             } catch (FileNotFoundException | UnsupportedEncodingException ex) {
@@ -140,9 +150,10 @@ public class ViewListsController implements Initializable{
         if (lines == null) {
             lines = new String[eventGuestTable.getItems().size()];
             for (int i=0;i<lines.length;i++) {
-                lines[i]= eventGuestTable.getItems().get(i).getFirstName() + " " +
-                        eventGuestTable.getItems().get(i).getLastName() + "        " +
-                        eventGuestTable.getItems().get(i).getNumber();
+                String formatStr = "%-35s %-25s %-20s%n";
+                lines[i]= String.format(formatStr, "          " + eventGuestTable.getItems().get(i).getFirstName() + " " + eventGuestTable.getItems().get(i).getLastName(),
+                                                   eventGuestTable.getItems().get(i).getNumber(),
+                                                   "Time In: " + eventGuestTable.getItems().get(i).getTime());
             }
         }
         return lines;
