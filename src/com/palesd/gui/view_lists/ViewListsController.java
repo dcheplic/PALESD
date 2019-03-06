@@ -53,21 +53,21 @@ public class ViewListsController implements Initializable, Printable {
     }
     
     @FXML
-    private void handlePrintButtonAction() {
+    private void handlePrintButtonAction() throws PrinterException {
         initTextLines();
         PrintService[] services = PrinterJob.lookupPrintServices();
         for(PrintService s : services)
             System.out.println(s.getName());
-//        PrinterJob job = PrinterJob.getPrinterJob();
-//         job.setPrintable(this);
-//         boolean ok = job.printDialog();
-//         if (ok) {
-//             try {
-//                  job.print();
-//             } catch (PrinterException ex) {
-//              /* The job did not successfully complete */
-//             }
-//         }
+        PrinterJob job = PrinterJob.getPrinterJob();
+         job.setPrintable(this);
+         job.setPrintService(services[1]);
+         //if (ok) {
+             try {
+                  job.print();
+             } catch (PrinterException ex) {
+              /* The job did not successfully complete */
+             }
+         //}
     }
     
     @FXML
