@@ -54,7 +54,8 @@ public class PrintController implements Initializable {
             } catch (IOException ex) {
                 System.out.println(ex);
             }
-        }        
+        }
+        handleExitButtonAction();
     }
     
     @FXML
