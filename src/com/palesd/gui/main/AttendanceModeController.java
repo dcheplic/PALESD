@@ -106,6 +106,7 @@ public class AttendanceModeController implements Initializable {
             scene.getStylesheets().add(styleSheet);
             ViewListsController controller = loader.<ViewListsController>getController();
             controller.setIdentifier("_att");
+            controller.setStyleSheet(styleSheet);
             MainMenu.pushAndSetScene(scene);
         } catch (IOException ex) {
         }

@@ -47,7 +47,7 @@ public class MainMenu extends Application {
         sceneStack.push(scene);
         bigStage = stage;
         bigStage.setScene(sceneStack.peek());
-        bigStage.initStyle(StageStyle.UNDECORATED);
+        //bigStage.initStyle(StageStyle.UNDECORATED);
         bigStage.show();
     }
 

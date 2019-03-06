@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="388.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.palesd.gui.view_lists.PrintController">
+   <children>
+      <ListView fx:id="printerList" layoutX="22.0" layoutY="69.0" onMouseClicked="#handleSelectedPrinterAction" prefHeight="230.0" prefWidth="433.0" />
+      <Label layoutX="22.0" layoutY="17.0" prefHeight="52.0" prefWidth="433.0" text="Please select the printer to print to:">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="exitButton" layoutX="22.0" layoutY="322.0" mnemonicParsing="false" onMouseClicked="#handleExitButtonAction" text="Exit">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="printButton" layoutX="385.0" layoutY="322.0" mnemonicParsing="false" onMouseClicked="#handlePrintButtonAction" text="Print">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
