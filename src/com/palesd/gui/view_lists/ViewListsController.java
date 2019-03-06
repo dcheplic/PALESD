@@ -61,7 +61,7 @@ public class ViewListsController implements Initializable{
             PrintWriter writer = null;
             try {
                 String[] textLines = initTextLines();
-                writer = new PrintWriter("src/com/palesd/printable/nameList.txt", "UTF-8");
+                writer = new PrintWriter("src/com/palesd/printable/" + selectedEvent + ".txt", "UTF-8");
                 for (String textLine : textLines) {
                     writer.println(textLine);
                 }
