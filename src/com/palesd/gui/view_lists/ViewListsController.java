@@ -26,6 +26,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import java.awt.print.*;
+import javax.print.PrintService;
 
 /**
  * FXML Controller class
@@ -54,18 +55,19 @@ public class ViewListsController implements Initializable, Printable {
     @FXML
     private void handlePrintButtonAction() {
         initTextLines();
-//        for(int i = 0; i < textLines.length; i++)
-//            System.out.println(textLines[i]);
-        PrinterJob job = PrinterJob.getPrinterJob();
-         job.setPrintable(this);
-         boolean ok = job.printDialog();
-         if (ok) {
-             try {
-                  job.print();
-             } catch (PrinterException ex) {
-              /* The job did not successfully complete */
-             }
-         }
+        PrintService[] services = PrinterJob.lookupPrintServices();
+        for(PrintService s : services)
+            System.out.println(s.getName());
+//        PrinterJob job = PrinterJob.getPrinterJob();
+//         job.setPrintable(this);
+//         boolean ok = job.printDialog();
+//         if (ok) {
+//             try {
+//                  job.print();
+//             } catch (PrinterException ex) {
+//              /* The job did not successfully complete */
+//             }
+//         }
     }
     
     @FXML
