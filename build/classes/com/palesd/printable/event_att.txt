@@ -4,7 +4,7 @@
 
 
           event
-          Current Date and Time: 03/06/2019 12:22 PM
+          Current Date and Time: 03/06/2019 12:23 PM
 
           Devin Cheplic             237197               Time In: 06:00 PM
           Colin Campbell            239990               Time In: 06:01 PM
