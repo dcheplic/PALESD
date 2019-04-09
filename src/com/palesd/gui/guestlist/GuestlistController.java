@@ -48,7 +48,6 @@ public class GuestlistController implements Initializable {
     @FXML private TableColumn timeCol;
     @FXML private TableView<Guest> attendanceTable;
     @FXML private TextField cardField;
-    @FXML private TextField nameField;
     
     private String eventName;
     private String guestListName;
@@ -57,23 +56,24 @@ public class GuestlistController implements Initializable {
     
     @FXML
     private void handleAddGuestButtonAction() {
-        boolean onList = false;
-        for(Guest guest : attendanceTable.getItems())
-            if(guest.getFirstName().equals(nameField.getText().split(" ")[0]) && guest.getLastName().equals(nameField.getText().split(" ")[1]))
-                onList = true;
         String fixedNum = cardField.getText();
+        List<Integer> cardList = new ArrayList();
         if (cardField.getText().contains(";000") && (cardField.getText().endsWith("?") || cardField.getText().endsWith("?+E?")))
             fixedNum = fixedNum.substring(4,10);
-        if(!nameField.getText().trim().isEmpty() && !cardField.getText().trim().isEmpty())
-            addGuestHelperNoSwipe(eventName, onList, Integer.parseInt(fixedNum));
-        else if(nameField.getText().trim().isEmpty())
-            for(Guest guest : createGuestList("Master List")) {
-                if(Integer.parseInt(fixedNum) == guest.getNumber())
-                    addGuestHelperSwipe(onList, eventName, guest.getFirstName(), guest.getLastName(), guest.getNumber());
+        boolean onList = false;
+        for(Guest guest : attendanceTable.getItems())
+            if(guest.getNumber() == Integer.parseInt(fixedNum))
+                onList = true;
+        for(Guest guest : createGuestList(eventName.substring(0, eventName.length()-5) + "_gue")) {
+            cardList.add(guest.getNumber());
+            if(!cardList.contains(Integer.parseInt(fixedNum))) {
+                status.setText("NOT ON LIST");
+                status.setTextFill(Color.RED);   
             }
-                        
+            if(Integer.parseInt(fixedNum) == guest.getNumber())
+                addGuestHelper(onList, eventName, guest.getFirstName(), guest.getLastName(), guest.getNumber());
+        }
         attendanceTable.getItems().setAll(createGuestList(eventName));
-        nameField.clear();
         cardField.clear();
     }
     
@@ -113,28 +113,8 @@ public class GuestlistController implements Initializable {
         sorter.getItems().setAll("First In", "First Name", "Last Name", "Time In");
     }
     
-    private void addGuestHelperNoSwipe(String eventName, boolean onList, int fixedNum) {
-        if(!guestList.getItems().contains(nameField.getText())) {
-            status.setText("NOT ON LIST");
-            status.setTextFill(Color.RED);
-        } else if(onList) {
-            status.setText("ALREADY SIGNED IN");
-            status.setTextFill(Color.BLACK);
-        } else {
-            Date date = new Date();
-            String time = sdf.format(date);
-            Database.insert(eventName, nameField.getText().split(" ")[0], nameField.getText().split(" ")[1], fixedNum, time);
-            Database.insert("Master List", nameField.getText().split(" ")[0], nameField.getText().split(" ")[1], fixedNum, "");
-            status.setText("ON LIST");
-            status.setTextFill(Color.GREEN);
-        }
-    }
-    
-    private void addGuestHelperSwipe(boolean onList, String eventName, String firstName, String lastName, int cardNum) {
-        if(!guestList.getItems().contains(firstName + " " + lastName)) {
-            status.setText("NOT ON LIST");
-            status.setTextFill(Color.RED);
-        } else if(onList) {
+    private void addGuestHelper(boolean onList, String eventName, String firstName, String lastName, int cardNum) {
+        if(onList) {
             status.setText("ALREADY SIGNED IN");
             status.setTextFill(Color.BLACK);
         } else {

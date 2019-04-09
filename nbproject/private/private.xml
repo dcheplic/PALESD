@@ -3,11 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/devin/OneDrive%20-%20Westminster%20College/Documents/NetBeansProjects/PALESD/src/com/palesd/gui/view_lists/PrintController.java</file>
+            <file>file:/C:/Users/devin/OneDrive%20-%20Westminster%20College/Documents/NetBeansProjects/PALESD/src/com/palesd/gui/guestlist/GuestlistController.java</file>
             <file>file:/C:/Users/devin/OneDrive%20-%20Westminster%20College/Documents/NetBeansProjects/PALESD/src/com/palesd/gui/attendance/AttendanceController.java</file>
-            <file>file:/C:/Users/devin/OneDrive%20-%20Westminster%20College/Documents/NetBeansProjects/PALESD/src/com/palesd/gui/view_lists/Print.fxml</file>
-            <file>file:/C:/Users/devin/OneDrive%20-%20Westminster%20College/Documents/NetBeansProjects/PALESD/src/com/palesd/gui/view_lists/ViewListsController.java</file>
-            <file>file:/C:/Users/devin/OneDrive%20-%20Westminster%20College/Documents/NetBeansProjects/PALESD/src/com/palesd/gui/main/MainMenu.java</file>
+            <file>file:/C:/Users/devin/OneDrive%20-%20Westminster%20College/Documents/NetBeansProjects/PALESD/src/com/palesd/gui/guestlist/CreateGuestlistController.java</file>
+            <file>file:/C:/Users/devin/OneDrive%20-%20Westminster%20College/Documents/NetBeansProjects/PALESD/src/com/palesd/database/Database.java</file>
         </group>
     </open-files>
 </project-private>

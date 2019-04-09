@@ -7,6 +7,7 @@ package com.palesd.gui.guestlist;
 
 import com.palesd.database.Database;
 import com.palesd.gui.main.MainMenu;
+import com.palesd.models.Guest;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -32,6 +33,7 @@ public class CreateGuestlistController implements Initializable {
     @FXML private Button exitButton;
     @FXML private ListView<String> guestList;
     @FXML private TextField nameField;
+    @FXML private TextField cardField;
     
     private String eventName;
     private String selectedName;
@@ -39,11 +41,20 @@ public class CreateGuestlistController implements Initializable {
     
     @FXML
     private void handleAddGuestButtonAction() {
-        if(!nameField.getText().trim().isEmpty())
-            Database.insert(eventName, nameField.getText().split(" ")[0], nameField.getText().split(" ")[1], 0, "");
+        String fixedNum = cardField.getText();
+        if (cardField.getText().contains(";000") && (cardField.getText().endsWith("?") || cardField.getText().endsWith("?+E?")))
+            fixedNum = fixedNum.substring(4,10);
+        if(!nameField.getText().trim().isEmpty() && !cardField.getText().trim().isEmpty()) {
+            Database.insert(eventName, nameField.getText().split(" ")[0], nameField.getText().split(" ")[1], Integer.parseInt(fixedNum), "");
+            Database.insert("Master List", nameField.getText().split(" ")[0], nameField.getText().split(" ")[1], Integer.parseInt(fixedNum), "");
+        } else if(nameField.getText().trim().isEmpty())
+            for(Guest guest : createGuestList("Master List"))
+                if(Integer.parseInt(fixedNum) ==  guest.getNumber())
+                    Database.insert(eventName, guest.getFirstName(), guest.getLastName(), guest.getNumber(), "");
         
         guestList.getItems().setAll(createNameList(eventName));
         nameField.clear();
+        cardField.clear();
     }
     
     @FXML
@@ -76,6 +87,19 @@ public class CreateGuestlistController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
     }    
+    
+    private List<Guest> createGuestList(String eventName) {
+        List<Guest> guestList = new ArrayList();
+        try {
+            ResultSet rs = Database.selectAllGuests(eventName);
+            while(rs.next()) {
+                Guest guest = new Guest(rs.getString("firstName"), rs.getString("lastName"), rs.getInt("titanCard"), rs.getString("time"));
+                guestList.add(guest);
+            }
+        } catch (SQLException ex) {
+        }
+        return guestList;
+    }
 
     private List<String> createNameList(String eventName) {
         List<String> guestListLoc = new ArrayList();
